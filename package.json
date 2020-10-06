@@ -1,0 +1,18 @@
+{
+    "name": "online-store-example",
+    "email": "liam.deacon@lightbytestechnology.co.uk",
+    "url": "https://liam-deacon.github.io/",
+    "license": "GNU Public License v3.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/liam-deacon/online-store-example.git"
+    },
+    "devDependencies": {
+        "swagger2openapi": "^7.0.2"
+    },
+    "scripts": {
+        "apispec": "wget -O apispec.json http://localhost:5000/apispec_1.json",
+        "preswag2oas": "sed -i 's|\"/terms\"|\"http://localhost:5000/terms\"|' apispec.json",
+        "swag2oas": "node_modules/.bin/swagger2openapi -o oas_spec.yaml apispec.json"
+    }
+}
