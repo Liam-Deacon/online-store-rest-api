@@ -1,0 +1,28 @@
+engines:
+  bandit:
+    enabled: true
+  metric:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - python
+  fixme:
+    enabled: true
+  radon:
+    enabled: true
+  remarklint:
+    enabled: true
+  prospector:
+    enabled: true
+  pylint:
+    enabled: true
+ratings:
+  paths:
+  - "**.py"
+exclude_paths:
+- test/
+- doc/
+- setup.py
+- doc/build/**

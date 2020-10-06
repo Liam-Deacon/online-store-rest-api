@@ -1,0 +1,12 @@
+# prospector configuration file
+ignore-paths:
+  - doc
+  - docs
+  - test
+  - tests
+
+pyroma:
+  run: true
+
+mypy:
+  run: true

@@ -1,0 +1,11 @@
+dist/
+build/
+node_modules/
+
+__pycache__/
+
+store.db
+*.log
+
+apispec.json
+oas_spec.yaml
