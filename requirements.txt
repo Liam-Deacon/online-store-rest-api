@@ -1,0 +1,9 @@
+# general
+Flask
+
+# backend
+flask-sqlalchemy
+flask-jwt-extended
+loguru
+passlib
+flasgger

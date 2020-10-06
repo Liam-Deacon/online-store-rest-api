@@ -1,0 +1,14 @@
+# testing
+pytest
+pytest-cov
+
+# linters
+mypy
+pylama
+pycodestyle
+pydocstyle
+bandit
+
+# development
+sphinx
+sphinxcontrib-openapi
