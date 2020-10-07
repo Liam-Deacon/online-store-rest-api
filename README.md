@@ -207,14 +207,14 @@ There are currently a number of extra features, which help
 
 ## TODO 📝
 
-- [ ] Build script / CI using GitHub Actions
+- [x] Build script / CI using GitHub Actions
 - [ ] Sphinx documentation support
 - [ ] Deploy API documentation to GitHub Pages via Actions
 - [ ] Test SqlDatabaseGiftList
 - [ ] Automated tests for REST API
 - [ ] shields.io support for README badges
 - [ ] Add linting to CI
-- [ ] Build and deploy docker image(s) to dockerhub via CI/CD
+- [x] Build and deploy docker image(s) to dockerhub via CI/CD
 
 ## Future Improvements 🔮
 

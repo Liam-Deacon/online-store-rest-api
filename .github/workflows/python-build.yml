@@ -53,11 +53,15 @@ jobs:
       - name: Install requirements
         run: |
           pip install -r requirements.txt
+
       - name: Generate coverage report
+        if: ${{ matrix.os == 'ubuntu-latest' && matrix.python-version == 3.8 }}
         run: |
           pip install -e .
           pytest
+
       - name: Upload coverage to Codecov
+        if: ${{ matrix.os == 'ubuntu-latest' && matrix.python-version == 3.8 }}
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
@@ -67,6 +71,7 @@ jobs:
           fail_ci_if_error: false
 
       - name: Upload coverage to Coveralls
+        if: ${{ matrix.os == 'ubuntu-latest' && matrix.python-version == 3.8 }}
         run: |
           COVERALLS_REPO_TOKEN=$COVERALLS_REPO_TOKEN coveralls
         env:
