@@ -4,7 +4,7 @@
 ifeq ($(OS),Windows_NT)
 PYTHON        ?= python
 else
-PYTHON        ?= python3.7
+PYTHON        ?= python3
 endif
 PACKAGE       = $(shell $(PYTHON) -W ignore -c "import sys;sys.path.insert(0, '../');import setup; print(setup.metadata['name'].replace('.', '/'))")
 PACKAGE_PARENT= $(shell $(PYTHON) -W ignore -c "import os; print(os.path.dirname('$(PACKAGE)'))")
@@ -99,7 +99,7 @@ cleandeps:
 
 apispec.json:
 	cd ../ && npm i
-	cd ../online_store && flask run &
+	cd ../online_store && $(PYTHON) -m flask run &
 	cd ../ && sleep 5 && npm run apispec
 	killall flask
 

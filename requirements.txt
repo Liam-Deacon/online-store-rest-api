@@ -2,6 +2,7 @@
 Flask
 
 # backend
+flask-cli
 flask-sqlalchemy
 flask-jwt-extended
 loguru
