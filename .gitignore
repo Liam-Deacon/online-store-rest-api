@@ -11,5 +11,7 @@ __pycache__/
 store.db
 *.log
 
+.vscode/settings.json
+
 apispec.json
 oas_spec.yaml
