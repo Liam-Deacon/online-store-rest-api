@@ -15,4 +15,4 @@ store.db
 .vscode/settings.json
 
 apispec.json
-oas_spec.yaml
+openapi_spec.yml

@@ -9,6 +9,7 @@ Welcome to the `online-stire-rest-api` documentation!
 
    introduction
    changelog
+   openapi_spec
 
 
 Indices and tables

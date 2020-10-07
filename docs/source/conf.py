@@ -85,6 +85,7 @@ extensions = [
     # 'sphinx_autodoc_napoleon_typehints',
     'sphinx_git',
     'sphinx_pyreverse',
+    'sphinxcontrib.openapi',
     # 'sphinxcontrib.programoutput',
     # 'sphinxcontrib.jupyter',
     # 'sphinxcontrib.packages',

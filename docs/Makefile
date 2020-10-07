@@ -96,3 +96,12 @@ cleanuml:
 
 cleandeps:
 	rm source/static/dependencies.json
+
+apispec.json:
+	cd ../ && npm i
+	cd ../online_store && flask run &
+	cd ../ && sleep 5 && npm run apispec
+	killall flask
+
+openapi_spec.yml: apispec.json
+	cd ../ && npm run swag2oas
