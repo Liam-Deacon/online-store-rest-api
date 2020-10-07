@@ -13,6 +13,6 @@
     "scripts": {
         "apispec": "wget -O apispec.json http://localhost:5000/apispec_1.json",
         "preswag2oas": "sed -i 's|\"/terms\"|\"http://localhost:5000/terms\"|' apispec.json",
-        "swag2oas": "node_modules/.bin/swagger2openapi -o openapi_spec.yaml apispec.json"
+        "swag2oas": "node_modules/.bin/swagger2openapi -o openapi_spec.yml apispec.json"
     }
 }
