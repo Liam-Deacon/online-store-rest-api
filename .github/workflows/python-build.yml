@@ -46,6 +46,7 @@ jobs:
 
       - name: Install development requirements
         run: |
+          pip install setuptools wheel
           pip install -r requirements-dev.txt
       - name: Install testing requirements
         run: |

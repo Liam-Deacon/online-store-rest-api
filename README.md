@@ -2,8 +2,9 @@
 
 
 <!--lint disable no-inline-padding-->
-![Python CI](https://github.com/Liam-Deacon/online-store-rest-api/workflows/Python%20CI/badge.svg)
-![Backend Docker CI/CD](https://github.com/Liam-Deacon/online-store-rest-api/workflows/Backend%20Docker%20CI/CD/badge.svg)
+[![Python CI](https://github.com/Liam-Deacon/online-store-rest-api/workflows/Python%20CI/badge.svg)](https://github.com/Liam-Deacon/online-store-rest-api/actions?query=workflow%3A"Python+CI")
+[![Backend Docker CI/CD](https://github.com/Liam-Deacon/online-store-rest-api/workflows/Backend%20Docker%20CI/CD/badge.svg)](https://github.com/Liam-Deacon/online-store-rest-api/actions?query=workflow%3A%22Backend+Docker+CI%2FCD%22)
+[![Sphinx Documentation CI](https://github.com/Liam-Deacon/online-store-rest-api/workflows/Sphinx%20Documentation%20CI/badge.svg)](https://github.com/Liam-Deacon/online-store-rest-api/actions?query=workflow%3A%22Sphinx+Documentation+CI%22)
 [![ ](https://img.shields.io/pypi/pyversions/metapandas.svg?logo=python)](https://pypi.org/pypi/metapandas/)
 [![ ](https://coveralls.io/repos/github/Liam-Deacon/online-store-rest-api/badge.svg?branch=master)](https://coveralls.io/github/Liam-Deacon/online-store-rest-api?branch=master)
 [![ ](https://codecov.io/gh/liam-deacon/online-store-rest-api/branch/master/graph/badge.svg)](https://codecov.io/gh/liam-deacon/online-store-rest-api)
@@ -49,6 +50,7 @@ There are two concrete implementations for realising a gift list with the follow
 $ npm install  # needed for Swagger JSON to OAS YAML spec conversion
 $ python3 -m venv venv
 $ source venv/bin/activate
+(venv) $ pip install setuptools
 (venv) $ pip install -r requirements-dev.txt -r requirements-test.txt
 (venv) $ pip install -r requirements.txt
 ```
@@ -206,16 +208,29 @@ There are currently a number of extra features, which help
 - [OpenAPI Specification (OAS)](https://swagger.io/specification/) conformant client documentation generated using [flasgger](https://github.com/flasgger/flasgger) and viewable via SwaggerUI [/apidocs](localhost:5000/apidocs) endpoint when running the flask server.
 - Persistent data storage using SQL Database modelled using [sqlalchemy](https://docs.sqlalchemy.org/en/13/intro.html) ORM.
 
+### Developer Documentation 📗
+
+The Sphinx documentation builder is currently used to extract python docstrings and the OpenAPI spec of the REST API.
+
+To build the documentation:
+
+```bash
+$ cd docs/
+$ make openapi_spec.yml
+$ make html  # or another end documentation format e.g. epub
+```
+
 ## TODO 📝
 
 - [x] Build script / CI using GitHub Actions
-- [ ] Sphinx documentation support
+- [x] Sphinx documentation support
 - [ ] Deploy API documentation to GitHub Pages via Actions
 - [ ] Test SqlDatabaseGiftList
 - [ ] Automated tests for REST API
-- [ ] shields.io support for README badges
+- [x] shields.io support for README badges
 - [ ] Add linting to CI
 - [x] Build and deploy docker image(s) to dockerhub via CI/CD
+- [ ] Deploy flask app to Heroku for demo purposes.
 
 ## Future Improvements 🔮
 
