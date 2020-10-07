@@ -40,11 +40,8 @@ jobs:
           cd docs/
           make openapi_spec.yml
           ls -l
-          cp ../openapi_spec.yml ./
           ls -l ../
-          cp openapi_spec.yml ../
-          cp openapi_spec.yml ../../
-          cp openapi_spec.yml ./
+          ls -l ../../
           make html
 
       - name: Deploy 🚀
