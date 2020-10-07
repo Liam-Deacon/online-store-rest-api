@@ -55,7 +55,7 @@ sphinxcontrib-openapi
 docutils  #==0.14
 pycodestyle==2.4.0  # prospector==1.2.0 is incompatible with pycodestyle==2.5.0
 doc8
-# numpydoc
+numpydoc
 sphinx-autodoc-typehints
 sphinx-autodoc-napoleon-typehints
 sphinx_rtd_theme
