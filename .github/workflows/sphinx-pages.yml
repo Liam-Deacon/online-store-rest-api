@@ -37,7 +37,7 @@ jobs:
           make html
 
       - name: Deploy 🚀
-        if: {{ github.ref == 'refs/heads/master' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         uses: JamesIves/github-pages-deploy-action@3.5.7
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
