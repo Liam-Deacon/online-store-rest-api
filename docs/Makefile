@@ -101,7 +101,7 @@ apispec.json:
 	cd ../ && npm i
 	cd ../online_store && $(PYTHON) -m flask run &
 	cd ../ && sleep 5 && npm run apispec
-	killall flask
+	kill `ps -ef | grep python | head -1 | tr -s ' ' | cut -d ' ' -f2` || echo "Nothing to kill" 
 
 openapi_spec.yml: apispec.json
 	cd ../ && npm run swag2oas
