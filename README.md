@@ -2,8 +2,9 @@
 
 
 <!--lint disable no-inline-padding-->
-![Python CI](https://github.com/Liam-Deacon/online-store-rest-api/workflows/Python%20CI/badge.svg)
-![Backend Docker CI/CD](https://github.com/Liam-Deacon/online-store-rest-api/workflows/Backend%20Docker%20CI/CD/badge.svg)
+[![Python CI](https://github.com/Liam-Deacon/online-store-rest-api/workflows/Python%20CI/badge.svg)](https://github.com/Liam-Deacon/online-store-rest-api/actions?query=workflow%3A"Python+CI")
+[![Backend Docker CI/CD](https://github.com/Liam-Deacon/online-store-rest-api/workflows/Backend%20Docker%20CI/CD/badge.svg)](https://github.com/Liam-Deacon/online-store-rest-api/actions?query=workflow%3A%22Backend+Docker+CI%2FCD%22)
+[![Sphinx Documentation CI](https://github.com/Liam-Deacon/online-store-rest-api/workflows/Sphinx%20Documentation%20CI/badge.svg)](https://github.com/Liam-Deacon/online-store-rest-api/actions?query=workflow%3A%22Sphinx+Documentation+CI%22)
 [![ ](https://img.shields.io/pypi/pyversions/metapandas.svg?logo=python)](https://pypi.org/pypi/metapandas/)
 [![ ](https://coveralls.io/repos/github/Liam-Deacon/online-store-rest-api/badge.svg?branch=master)](https://coveralls.io/github/Liam-Deacon/online-store-rest-api?branch=master)
 [![ ](https://codecov.io/gh/liam-deacon/online-store-rest-api/branch/master/graph/badge.svg)](https://codecov.io/gh/liam-deacon/online-store-rest-api)
