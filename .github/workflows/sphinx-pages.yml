@@ -34,8 +34,17 @@ jobs:
           python3 -m pip install setuptools wheel
           python3 -m pip install -r requirements-dev.txt
           python3 -m pip install -r requirements.txt
+      
+      - name: Generate HTML docs 📄
+        run: |
           cd docs/
           make openapi_spec.yml
+          ls -l
+          cp ../openapi_spec.yml ./
+          ls -l ../
+          cp openapi_spec.yml ../
+          cp openapi_spec.yml ../../
+          cp openapi_spec.yml ./
           make html
 
       - name: Deploy 🚀
