@@ -1,16 +1,21 @@
+"""This module defines the Flask app instance, created using `create_app()`."""
 import os
 import re
 
 from collections import defaultdict
 from pathlib import Path
-from flask import Flask, jsonify
+from flask import Flask
 from loguru import logger
 
+# Flask middleware and extensions
 from flask_jwt_extended import JWTManager
 from flasgger import Swagger
 
+# SQL and ORM
 from .backend.models.database import db as store_db
-from .backend.models.item import ItemModel
+from .backend.models.item import ItemModel  # TODO: refactor, not really needed
+
+# route blueprints
 from .backend.routes.auth import auth_router as backend_auth_router
 from .backend.routes.gifts import gifts_router as backend_gifts_router
 from .backend.routes.store import store_router as backend_store_router
@@ -20,8 +25,24 @@ __author__ = "Liam Deacon"
 __description__ = "Wedding Gift List"
 
 
-def create_app() -> Flask:
-    app = Flask(__name__)
+def create_app(*args, **kwargs) -> Flask:
+    """Function for creating the flask app instance.
+
+    This app currently uses the following middleware/flask extensions:
+
+        - JWTManager (flask-jwt-extended) for JSON web token authentication.
+        - Swagger (flasgger) for interactively viewing the REST API
+          under `/apidocs`.
+
+    .. todo::
+
+        This function is too complex, performing many changes
+        (for instance uses user env and conf files together)
+        and therefore needs refactoring in order to be more easily
+        (and thoroughly) tested.
+
+    """
+    app = Flask(__name__, *args, **kwargs)
 
     # load config
     app.config['SQLALCHEMY_DATABASE_URI'] = \
@@ -61,17 +82,6 @@ def create_app() -> Flask:
 
     # Add Swagger apidocs
     Swagger(app,
-            # config={
-            #     'headers': [
-
-            #     ],
-            #     'specs': [
-            #         {
-            #             'endpoint': 'apispec',
-            #             'route': '/apispec1.json'
-            #         }
-            #     ],
-            # },
             template={
                 "info": {
                     "title": f"Example {__description__} REST API by {__author__}",
