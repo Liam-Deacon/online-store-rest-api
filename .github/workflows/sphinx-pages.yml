@@ -5,7 +5,20 @@ name: Sphinx Documentation CI
 
 on:
   push:
-    branches: [ dev ]
+    branches: 
+      - main
+      - master
+    paths:
+      - 'docs/**'
+      - 'doc/**'
+  pull_request:
+    branches:
+      - main
+      - master
+    paths:
+      - 'docs/**'
+      - 'doc/**'
+
 
 jobs:
   build-and-deploy:
@@ -18,11 +31,13 @@ jobs:
 
       - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
         run: |
-          python3 -m pip install requirements.txt
-          cd doc/
+          python3 -m pip install -r requirements-dev.txt
+          cd docs/
+          make openapi_spec.yml
           make html
 
       - name: Deploy 🚀
+        if: {{ github.ref == 'refs/heads/master' }}
         uses: JamesIves/github-pages-deploy-action@3.5.7
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
