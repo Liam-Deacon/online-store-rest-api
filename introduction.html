@@ -1,0 +1,466 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. Introduction &mdash; online_store 0.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. Changes" href="changelog.html" />
+    <link rel="prev" title="Welcome to the online-stire-rest-api documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> online_store
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">2. Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html#todo">3. TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="openapi_spec.html">4. OpenAPI Specification</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">online_store</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">1. </span>Introduction</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/introduction.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction">
+<h1><span class="section-number">1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Online Store Example
+
+
+&lt;!--lint disable no-inline-padding--&gt;
+[![Python CI](https://github.com/Liam-Deacon/online-store-rest-api/workflows/Python%20CI/badge.svg)](https://github.com/Liam-Deacon/online-store-rest-api/actions?query=workflow%3A&quot;Python+CI&quot;)
+[![Backend Docker CI/CD](https://github.com/Liam-Deacon/online-store-rest-api/workflows/Backend%20Docker%20CI/CD/badge.svg)](https://github.com/Liam-Deacon/online-store-rest-api/actions?query=workflow%3A%22Backend+Docker+CI%2FCD%22)
+[![Sphinx Documentation CI](https://github.com/Liam-Deacon/online-store-rest-api/workflows/Sphinx%20Documentation%20CI/badge.svg)](https://github.com/Liam-Deacon/online-store-rest-api/actions?query=workflow%3A%22Sphinx+Documentation+CI%22)
+[![ ](https://img.shields.io/pypi/pyversions/metapandas.svg?logo=python)](https://pypi.org/pypi/metapandas/)
+[![ ](https://coveralls.io/repos/github/Liam-Deacon/online-store-rest-api/badge.svg?branch=master)](https://coveralls.io/github/Liam-Deacon/online-store-rest-api?branch=master)
+[![ ](https://codecov.io/gh/liam-deacon/online-store-rest-api/branch/master/graph/badge.svg)](https://codecov.io/gh/liam-deacon/online-store-rest-api)
+[![ ](https://api.codacy.com/project/badge/Grade/de571d98b5ed4203b6eda5f927c8835d)](https://www.codacy.com/gh/liam-deacon/online-store-rest-api?utm_source=github.com&amp;amp;utm_medium=referral&amp;amp;utm_content=liam-deacon/online-store-rest-api&amp;amp;utm_campaign=Badge_Grade)
+[![ ](https://img.shields.io/codefactor/grade/github/liam-deacon/online-store-rest-api?logo=codefactor)](https://www.codefactor.io/repository/github/liam-deacon/online-store-rest-api)
+![ ](https://img.shields.io/badge/dev-Open%20in%20Gitpod-blue?logo=gitpod&amp;link=https://gitpod.io/#https://github.com/liam-deacon/online-store-rest-api)
+[![ ](https://camo.githubusercontent.com/52feade06f2fecbf006889a904d221e6a730c194/68747470733a2f2f636f6c61622e72657365617263682e676f6f676c652e636f6d2f6173736574732f636f6c61622d62616467652e737667)](https://colab.research.google.com/github/liam-deacon/online-store-rest-api)
+[![ ](https://img.shields.io/badge/Binder%20Launch:-Jupyter%20Lab-blue.svg?colorA=&amp;logo=data:image/png;base64,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)](https://mybinder.org/v2/gh/liam-deacon/online-store-rest-api/master?urlpath=lab)
+
+&lt;!--lint enable no-inline-padding--&gt;
+
+## Background:
+
+This repository was created to solve the [Prezola Technical Challenge](https://github.com/prezola/technical-challenge), which requires a solution capable of adding, removing and listing (added) gifts from a list. It also required a mechanism to purchase a gift from the list and generate a report (of purchased vs non-purchased) gifts.  
+
+This code project takes that concept and extends it to a generic (gift) store.
+
+## The challenge:
+
+_&quot;Write a program to the best of your knowledge which will allow the user to manage a single list of wedding gifts.&quot;_
+
+The user must be able to:
+
+- Add a gift to the list
+- Remove a gift from the list
+- List the already added gifts of the list 
+- Purchase a gift from the list
+- Generate a report from the list which will print out the gifts and their statuses.
+  - The report must include two sections:
+    - Purchased gifts: each purchased gift with their details.
+    - Not purchased gifts: each available gift with their details.
+
+### Implementation Notes
+
+There are two concrete implementations for realising a gift list with the following classes from `online_store/backend/gift_list.py`:
+
+- `BasicGiftList`, a pure python implementation of a gift list **(Well Tested)**.
+- `SqlDatabaseGiftList`, an SQL ORM based implementation of a gift list for use within a flask (or Django) REST API app. In this example, the ORM models are found in `online_store/backend/models/` and the REST API is implemented in `online_store/backend/routes/gifts.py`
+
+### Development Setup ⚙️
+
+```bash
+$ npm install  # needed for Swagger JSON to OAS YAML spec conversion
+$ python3 -m venv venv
+$ source venv/bin/activate
+(venv) $ pip install setuptools
+(venv) $ pip install -r requirements-dev.txt -r requirements-test.txt
+(venv) $ pip install -r requirements.txt
+```
+
+### Testing 🧪
+
+`setup.cfg` has configured `pytest` to collect coverage information and can be run as follows:
+
+```bash
+(venv) $ PYTHONPATH=&#39;.&#39; py.test 
+```
+
+### Basic Gift List Implementation 🎁
+
+The following showcases a simple python implementation of the gift list:
+
+```python
+# load store data
+&gt;&gt;&gt; import json
+&gt;&gt;&gt; store_items = json.load(open(&#39;products.json&#39;))
+# import implementation
+&gt;&gt;&gt; from online_store.backend.gift_list import BasicGiftList
+# create a new gift list
+&gt;&gt;&gt; gift_list = BasicGiftList(&#39;Liam&#39;)
+&gt;&gt;&gt; gift_list  # show list representation in interpreter
+Liam -&gt; []
+# add gift item
+&gt;&gt;&gt; gift_list.add_item(store_items[0])
+&gt;&gt;&gt; gift_list
+Liam -&gt; [{&#39;id&#39;: 1, &#39;name&#39;: &#39;Tea pot&#39;, &#39;brand&#39;: &#39;Le Creuset&#39;, &#39;price&#39;: &#39;47.00GBP&#39;, &#39;in_stock_quantity&#39;: 50}]
+# remove gift item
+&gt;&gt;&gt; gift_list.add_item(store_items[1], quantity=3)
+&gt;&gt;&gt; gift_list.remove_item(store_items[0])
+&gt;&gt;&gt; gift_list
+Liam -&gt; [{&#39;id&#39;: 2, &#39;name&#39;: &#39;Cast Iron Oval Casserole - 25cm; Volcanic&#39;, &#39;brand&#39;: &#39;Le Creuset&#39;, &#39;price&#39;: &#39;210.00GBP&#39;, &#39;in_stock_quantity&#39;: 27}]
+# purchase gift item
+&gt;&gt;&gt; gift_list.purchase_item(store_items[1], quantity=1)
+# generate report
+&gt;&gt;&gt; gift_list.create_report()
+Gift List Report for Liam:
+==============================
+Purchased items:
+   - {&#39;id&#39;: 2, &#39;name&#39;: &#39;Cast Iron Oval Casserole - 25cm; Volcanic&#39;, &#39;brand&#39;: &#39;Le Creuset&#39;, &#39;price&#39;: &#39;210.00GBP&#39;, &#39;in_stock_quantity&#39;: 27} (quantity: 1)
+------------------------------
+Available items:
+  - {&#39;id&#39;: 2, &#39;name&#39;: &#39;Cast Iron Oval Casserole - 25cm; Volcanic&#39;, &#39;brand&#39;: &#39;Le Creuset&#39;, &#39;price&#39;: &#39;210.00GBP&#39;, &#39;in_stock_quantity&#39;: 27} (quantity: 2)
+```
+
+### Flask REST API + SQL ORM Implementation 🌍🕸️
+
+Alternatively there is a REST API, which can be run with:
+
+```bash
+$ source venv/bin/activate
+(venv) $ cd online_store
+(venv) $ FLASK_DEBUG=1 flask run
+```
+
+This will start a flask development server running on http://localhost:5000 and provides a Swagger-UI at http://localhost:5000/apidocs/. 
+
+#### Examples
+
+```bash
+# register a new user
+$ curl -X POST -H &quot;Content-Type: application/json&quot; -d &#39;{&quot;username&quot;: &quot;me&quot;, &quot;password&quot;: &quot;test&quot;, &quot;email&quot;: &quot;me@test.com&quot;}&#39; &#39;http://localhost:5000/api/v1/auth/register&#39;
+
+{&quot;code&quot;:200,&quot;msg&quot;:&quot;success&quot;,&quot;status&quot;:&quot;ok&quot;}
+
+# login with user
+$ curl -X POST -H &quot;Content-Type: application/json&quot; -d &#39;{&quot;username&quot;: &quot;me&quot;, &quot;password&quot;: &quot;test&quot;}&#39;
+
+{&quot;access_token&quot;:&quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDIwMTIxMzQsIm5iZiI6MTYwMjAxMjEzNCwianRpIjoiOTA5NTRlZDAtZWIzMy00MTY2LThhODEtZDE5NDI3MjI5NTE0IiwiZXhwIjoxNjAyMDEzMDM0LCJpZGVudGl0eSI6Im1lIiwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.GYVTQK4Xw9JaiJJxa75vlKBS-mho0QjfcM94usPZtSI&quot;,&quot;code&quot;:200,&quot;status&quot;:&quot;ok&quot;}
+
+# note access token
+$ export TOKEN=&#39;&lt;JWT_FROM_LOGIN&gt;&#39;
+
+# access gift list
+$ curl -X GET -H  &quot;accept: application/json&quot; -H  &quot;Authorization: Bearer $TOKEN&quot; http://localhost:5000/api/v1/gifts/list
+
+[]
+
+# add one gift item with store id of 1 to list
+$ curl -X POST -H  &quot;accept: application/json&quot; -H  &quot;Authorization: Bearer $TOKEN&quot; &#39;http://localhost:5000/api/v1/gifts/list/add?item_id=1&amp;quantity=1&#39;
+
+{
+  &quot;code&quot;: 200,
+  &quot;msg&quot;: &quot;Item added&quot;,
+  &quot;status&quot;: &quot;ok&quot;
+}
+
+# remove item with id 1 from gift list
+$ curl -X DELETE -H  &quot;accept: application/json&quot; -H  &quot;Authorization: Bearer $TOKEN&quot; http://localhost:5000/api/v1/gifts/list/1
+
+{
+  &quot;code&quot;: 200,
+  &quot;msg&quot;: &quot;Item removed&quot;,
+  &quot;status&quot;: &quot;ok&quot;
+}
+
+# add then purchase item
+$ curl -X POST -H  &quot;accept: application/json&quot; -H  &quot;Authorization: Bearer $TOKEN&quot; &#39;http://localhost:5000/api/v1/gifts/list/add?item_id=2&amp;quantity=2&#39;
+
+{
+  &quot;code&quot;: 200,
+  &quot;msg&quot;: &quot;Item added&quot;,
+  &quot;status&quot;: &quot;ok&quot;
+}
+
+$ curl -X POST -H  &quot;accept: application/json&quot; -H  &quot;Authorization: Bearer $TOKEN&quot; http://localhost:5000/api/v1/gifts/list/2/purchase?quantity=1
+
+{
+  &quot;code&quot;: 200, 
+  &quot;msg&quot;: &quot;gift purchased&quot;, 
+  &quot;status&quot;: &quot;ok&quot;
+}
+
+# produce report
+$ curl -X GET -H  &quot;accept: application/json&quot; -H  &quot;Authorization: Bearer $TOKEN&quot; &#39;http://localhost:5000/api/v1/gifts/list/report&#39;
+
+{
+  &quot;available&quot;: [
+    {
+      &quot;brand&quot;: &quot;Le Creuset&quot;, 
+      &quot;currency&quot;: &quot;GBP&quot;, 
+      &quot;id&quot;: 2, 
+      &quot;in_stock_quantity&quot;: 27, 
+      &quot;name&quot;: &quot;Cast Iron Oval Casserole - 25cm; Volcanic&quot;, 
+      &quot;price&quot;: 210.0, 
+      &quot;quantity&quot;: 1
+    }
+  ], 
+  &quot;purchased&quot;: [
+    {
+      &quot;brand&quot;: &quot;Le Creuset&quot;, 
+      &quot;currency&quot;: &quot;GBP&quot;, 
+      &quot;id&quot;: 2, 
+      &quot;in_stock_quantity&quot;: 27, 
+      &quot;name&quot;: &quot;Cast Iron Oval Casserole - 25cm; Volcanic&quot;, 
+      &quot;price&quot;: 210.0, 
+      &quot;quantity&quot;: 1
+    }
+  ], 
+  &quot;user&quot;: 2
+}
+
+```
+
+## Bonus Features ✨
+
+There are currently a number of extra features, which help 
+
+- User-friendly backend application logging using `loguru` python package.
+- Simple containerisation using Docker - see `DockerFile`
+- Authentication using JSON web tokens via [flask-jwt-extended]() middleware.
+- [OpenAPI Specification (OAS)](https://swagger.io/specification/) conformant client documentation generated using [flasgger](https://github.com/flasgger/flasgger) and viewable via SwaggerUI [/apidocs](localhost:5000/apidocs) endpoint when running the flask server.
+- Persistent data storage using SQL Database modelled using [sqlalchemy](https://docs.sqlalchemy.org/en/13/intro.html) ORM.
+
+### Developer Documentation 📗
+
+The Sphinx documentation builder is currently used to extract python docstrings and the OpenAPI spec of the REST API.
+
+To build the documentation:
+
+```bash
+$ cd docs/
+$ make openapi_spec.yml
+$ make html  # or another end documentation format e.g. epub
+```
+
+## TODO 📝
+
+- [x] Build script / CI using GitHub Actions
+- [x] Sphinx documentation support
+- [ ] Deploy API documentation to GitHub Pages via Actions
+- [ ] Test SqlDatabaseGiftList
+- [ ] Automated tests for REST API
+- [x] shields.io support for README badges
+- [ ] Add linting to CI
+- [x] Build and deploy docker image(s) to dockerhub via CI/CD
+- [ ] Deploy flask app to Heroku for demo purposes.
+
+## Future Improvements 🔮
+
+Given more time, the following improvements could be made:
+
+- [ ] Write frontend in React (or maybe Vue.js)
+- [ ] Create `docker-compose.yml` multi-container Docker compose script for orchestrating frontend, backend and database (e.g. React/NPM-based, Flask, Postgres).
+- [ ] Implement missing features in the code (i.e. wherever `NotImplementError` is raised)
+- [ ] Code tidy and refactor
+- [ ] Increase overall code coverage (aiming for nirvana at 100%)
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="changelog.html" class="btn btn-neutral float-right" title="2. Changes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to the online-stire-rest-api documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Liam Deacon
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,553 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. OpenAPI Specification &mdash; online_store 0.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="2. Changes" href="changelog.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> online_store
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">2. Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html#todo">3. TODO</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. OpenAPI Specification</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">online_store</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">4. </span>OpenAPI Specification</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/openapi_spec.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="openapi-specification">
+<h1><span class="section-number">4. </span>OpenAPI Specification<a class="headerlink" href="#openapi-specification" title="Permalink to this headline">¶</a></h1>
+<p>The following endpoints are defined for the Flask app:</p>
+<dl class="http post">
+<dt id="post--api-v1-auth-login">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/api/v1/auth/login</code><a class="headerlink" href="#post--api-v1-auth-login" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>User authentication method.</strong></p>
+<p>Authenticate user with supplied credentials.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – User successfully logged in.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – User login failed.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http delete">
+<dt id="delete--api-v1-auth-logout">
+<code class="sig-name descname">DELETE </code><code class="sig-name descname">/api/v1/auth/logout</code><a class="headerlink" href="#delete--api-v1-auth-logout" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>User logout method.</strong></p>
+<p>Revoke user authentication.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – User successfully logged out.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt id="post--api-v1-auth-refresh">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/api/v1/auth/refresh</code><a class="headerlink" href="#post--api-v1-auth-refresh" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>User authentication refresh method.</strong></p>
+<p>Refresh authentication of user with supplied credentials.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – User successfully refreshed token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – User authentication failed.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt id="post--api-v1-auth-register">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/api/v1/auth/register</code><a class="headerlink" href="#post--api-v1-auth-register" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>User registration method.</strong></p>
+<p>Register user with supplied credentials.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – User successfully registered.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Unable to register user.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http delete">
+<dt id="delete--api-v1-auth-remove">
+<code class="sig-name descname">DELETE </code><code class="sig-name descname">/api/v1/auth/remove</code><a class="headerlink" href="#delete--api-v1-auth-remove" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>User removal method.</strong></p>
+<p>Remove the authenticated user from registered users.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – User successfully deleted.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Unable to delete user.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http delete">
+<dt id="delete--api-v1-auth-revoke">
+<code class="sig-name descname">DELETE </code><code class="sig-name descname">/api/v1/auth/revoke</code><a class="headerlink" href="#delete--api-v1-auth-revoke" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Revoke JWT refresh token.</strong></p>
+<p>Revoke JWT refresh token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Successfully revoked refresh token.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--api-v1-gifts-list">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/api/v1/gifts/list</code><a class="headerlink" href="#get--api-v1-gifts-list" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>List all gifts added to user’s gift list.</strong></p>
+<p>Return the user’s gift list data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="problematic">default</span> – Default response</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt id="post--api-v1-gifts-list-add">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/api/v1/gifts/list/add</code><a class="headerlink" href="#post--api-v1-gifts-list-add" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Add a gift to the user’s gift list.</strong></p>
+<p>Add gift to user list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Query Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>item_id</strong> (<em>integer</em>) – The unique integer ID representing a store item.
+(Required)</p></li>
+<li><p><strong>quantity</strong> (<em>integer</em>) – Number of desired (available) gifts of this item.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Item successfully added.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Unable to add item to list.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--api-v1-gifts-list-report">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/api/v1/gifts/list/report</code><a class="headerlink" href="#get--api-v1-gifts-list-report" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Produce report of purchased and non-purchased gifts within user list.</strong></p>
+<p>Produce report of user’s gift list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – JSON report successfully generated.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> – No gifts in user’s list.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http delete">
+<dt id="delete--api-v1-gifts-list-gift_id">
+<code class="sig-name descname">DELETE </code><code class="sig-name descname">/api/v1/gifts/list/{gift_id}</code><a class="headerlink" href="#delete--api-v1-gifts-list-gift_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Remove gift from user’s gift list.</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gift_id</strong> (<em>integer</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span class="problematic">default</span> – Default response</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--api-v1-gifts-list-gift_id">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/api/v1/gifts/list/{gift_id}</code><a class="headerlink" href="#get--api-v1-gifts-list-gift_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Retrieve gift information.</strong></p>
+<p>Retrieve information on gift.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gift_id</strong> (<em>integer</em>) – The unique integer ID representing a gift item.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Successfuly returned gift item data.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt id="post--api-v1-gifts-list-gift_id-purchase">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/api/v1/gifts/list/{gift_id}/purchase</code><a class="headerlink" href="#post--api-v1-gifts-list-gift_id-purchase" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Purchase gift from list.</strong></p>
+<p>Purchase the gift</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gift_id</strong> (<em>integer</em>) – The unique gift item ID.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Query Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>quantity</strong> (<em>integer</em>) – The quantity of the gift to purchase (default is 1).</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="problematic">default</span> – Default response</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--api-v1-store-items">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/api/v1/store/items</code><a class="headerlink" href="#get--api-v1-store-items" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>List items method.</strong></p>
+<p>Retrieve list of items in store.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – List of items.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Unable to handle request.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt id="post--api-v1-store-items">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/api/v1/store/items</code><a class="headerlink" href="#post--api-v1-store-items" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Create a new item.</strong></p>
+<p>Add a new item to the store.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Item was successfully added.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Unable to create item.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http delete">
+<dt id="delete--api-v1-store-items-id-item_id">
+<code class="sig-name descname">DELETE </code><code class="sig-name descname">/api/v1/store/items/id/{item_id}</code><a class="headerlink" href="#delete--api-v1-store-items-id-item_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Delete item from store. [Requires admin user]</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="problematic">default</span> – Default response</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--api-v1-store-items-id-item_id">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/api/v1/store/items/id/{item_id}</code><a class="headerlink" href="#get--api-v1-store-items-id-item_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Single item data retrieval method.</strong></p>
+<p>Retrieve individual item data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>item_id</strong> (<em>integer</em>) – The unique integer ID representing a store item.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Items details.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Unable to handle request.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt id="post--api-v1-store-order">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/api/v1/store/order</code><a class="headerlink" href="#post--api-v1-store-order" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Order creation method.</strong></p>
+<p>Create a new order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Order successfully created.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Unable to handle request.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--api-v1-store-orders">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/api/v1/store/orders</code><a class="headerlink" href="#get--api-v1-store-orders" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>List orders retrieval method.</strong></p>
+<p>Retrieve list of orders.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – List of orders.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Unable to handle request.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http delete">
+<dt id="delete--api-v1-store-orders-id-order_id">
+<code class="sig-name descname">DELETE </code><code class="sig-name descname">/api/v1/store/orders/id/{order_id}</code><a class="headerlink" href="#delete--api-v1-store-orders-id-order_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Void order method.</strong></p>
+<p>Mark order as voided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>order_id</strong> (<em>integer</em>) – The unique integer ID representing an order item.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Order successfully voided.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Unable to handle request.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Unhandled exception occurred in server backend.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--api-v1-store-orders-id-order_id">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/api/v1/store/orders/id/{order_id}</code><a class="headerlink" href="#get--api-v1-store-orders-id-order_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Order data retrieval method.</strong></p>
+<p>Retrieve data associated with specified order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>order_id</strong> (<em>integer</em>) – The unique integer ID representing an order item.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Order details.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Unable to handle request.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="changelog.html" class="btn btn-neutral float-left" title="2. Changes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Liam Deacon
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
