@@ -237,7 +237,7 @@ class SqlDatabaseGiftList(AbstractGiftList):
         return successful
 
     def remove_item(self, item) -> bool:
-        """Remove item from gift list with boolean result indicating success."""
+        """Remove item from gift list with boolean indicating success."""
         gift = GiftModel.query \
                         .filter_by(id=getattr(item, 'id', None) or int(item)) \
                         .first()

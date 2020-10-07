@@ -42,7 +42,7 @@ def items():
     params = dict(request.args)
     fields: Optional[List[str]] = \
         str(params.pop('fields', "")).split(',')
-    purchased: bool = bool(params.pop('purchased', False))
+    purchased: bool = bool(params.pop('purchased', False))  # noqa
     query = ItemModel.query \
                      .filter_by(**params) \
                      .options(load_only(*fields))  # FIXME:
@@ -215,7 +215,7 @@ def get_order(order_id: int):
     tags:
         - store
     """
-    query = OrderItemModel.query.filter_by(order_id=order_id, **request.args)                        
+    query = OrderItemModel.query.filter_by(order_id=order_id, **request.args)
     return query_to_json_response(query.all())
 
 

@@ -1,12 +1,27 @@
+"""This module defines a custom JSON encoder for sqlalchemy models."""
 import json
 
+from typing import List
 from sqlalchemy.ext.declarative import DeclarativeMeta
 
 
 class AlchemyEncoder(json.JSONEncoder):
-    EXCLUDED_FIELDS = ['metadata', 'query']
+    """Custom JSON encoder class for sqlalchemy ORM objects.
+    
+    Examples
+    --------
+    >>> json.dumps(obj, cls=AlchemyEncoder)
+
+    Attributes
+    ----------
+    EXCLUDED_FIELDS: List[str]
+        The names of fields to ignore when encoding object to JSON.
+    """
+
+    EXCLUDED_FIELDS: List[str] = ['metadata', 'query']
 
     def default(self, obj):
+        """Custom JSON encoding method accounting for sqlalchemy ORM objects"""
         if isinstance(obj.__class__, DeclarativeMeta):
             # an SQLAlchemy class
             fields = {}
@@ -16,7 +31,8 @@ class AlchemyEncoder(json.JSONEncoder):
                           and not callable(getattr(obj, x))]:
                 data = obj.__getattribute__(field)
                 try:
-                    json.dumps(data)  # this will fail on non-encodable values, like other classes
+                    # NOTE: json.dumps will still fail on non-encodable values
+                    json.dumps(data)
                     fields[field] = data
                 except TypeError:
                     fields[field] = None

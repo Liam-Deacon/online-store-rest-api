@@ -137,7 +137,7 @@ def remove_gift(gift_id: int) -> Response:
     tags:
       - gifts
     """
-    gift = get_giftlist().remove_item(gift_id)
+    gift = get_giftlist().remove_item(gift_id)  # noqa
     # TODO: check that gift belongs to user, stop if not
     return jsonify({"msg": "Gift removed from list",
                     "status": "ok", "code": HTTPStatus.OK}), HTTPStatus.OK

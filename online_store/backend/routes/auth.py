@@ -98,7 +98,7 @@ def login():
         return jsonify({'msg': 'Invalid username',
                         'status': 'error', 'code': 400}), 400
     elif not UserModel.verify_hash(password, user.password):
-        return jsonify({'msg': 'Invalid password', 
+        return jsonify({'msg': 'Invalid password',
                         'status': 'error', 'code': 400}), 400
 
     # Identity can be any data that is json serialisable

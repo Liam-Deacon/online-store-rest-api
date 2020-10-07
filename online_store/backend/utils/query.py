@@ -1,4 +1,4 @@
-"""Provides useful utility functions when performing & returning ORM queries."""
+"""Provides useful utility functions when performing & returning ORM queries"""
 import json
 import sqlalchemy.exc
 
