@@ -24,8 +24,8 @@ class GiftModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     item_id = db.Column(db.ForeignKey('items.id'), nullable=False)
     list_id = db.Column(db.ForeignKey('gift_lists.id'), nullable=False)
-    available = db.Column(db.Integer, default=1)
-    purchased = db.Column(db.Integer, default=0)
+    available = db.Column(db.Integer, default=1, nullable=False)
+    purchased = db.Column(db.Integer, default=0, nullable=False)
 
 
 class GiftListModel(db.Model):

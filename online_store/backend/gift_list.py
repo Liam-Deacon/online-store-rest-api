@@ -230,11 +230,10 @@ class SqlDatabaseGiftList(AbstractGiftList):
     def remove_item(self, item) -> bool:
         """Remove item from gift list with boolean result indicating success."""
         gift = GiftModel.query \
-                        .filter_by(id=getattr(item, 'id', None) or int(item),
-                                   user_id=self._get_user_id()) \
+                        .filter_by(id=getattr(item, 'id', None) or int(item)) \
                         .first()
         if gift:
-            gift.delete()
+            db.session.delete(gift)
             db.session.commit()
             success = False
         else:
@@ -249,6 +248,8 @@ class SqlDatabaseGiftList(AbstractGiftList):
 
         if quantity > gift.available:
             raise ValueError('quantity greater than available gift number')
+
+        item.in_stock_quantity = item.in_stock_quantity or 10
 
         item.in_stock_quantity -= quantity
         gift.available -= quantity

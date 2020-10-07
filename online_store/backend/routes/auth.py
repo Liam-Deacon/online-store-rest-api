@@ -289,3 +289,12 @@ def remove_user():
         msg, status, code = str(err), 'error', 400
 
     return jsonify(msg=msg, status=status, code=code), code
+
+
+@auth_router.route('/user', methods=['GET'])
+@jwt_required
+def user_details():
+    """
+    Temporary endpoint for debugging.
+    """
+    return jsonify(username=get_jwt_identity())

@@ -139,9 +139,8 @@ def remove_gift(gift_id: int) -> Response:
     """
     gift = get_giftlist().remove_item(gift_id)
     # TODO: check that gift belongs to user, stop if not
-    return Response({"msg": "Gift removed from list",
-                     "status": "ok", "code": HTTPStatus.OK},
-                    mimetype="application/json", status=HTTPStatus.OK)
+    return jsonify({"msg": "Gift removed from list",
+                    "status": "ok", "code": HTTPStatus.OK}), HTTPStatus.OK
 
 
 @gifts_router.route('/list/<gift_id>/purchase', methods=['POST'])
@@ -170,7 +169,7 @@ def purchase_gift(gift_id: int) -> Response:
     """
     gift = get_giftlist().get_list().filter_by(id=gift_id).first()
     quantity = request.args.get('quantity', type=int, default=1)
-    gift.purchase_item(gift, quantity)
+    get_giftlist().purchase_item(gift, quantity)
     return jsonify(msg="gift purchased",
                    status='ok',
                    code=HTTPStatus.OK), HTTPStatus.OK
