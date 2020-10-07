@@ -49,6 +49,7 @@ There are two concrete implementations for realising a gift list with the follow
 $ npm install  # needed for Swagger JSON to OAS YAML spec conversion
 $ python3 -m venv venv
 $ source venv/bin/activate
+(venv) $ pip install setuptools
 (venv) $ pip install -r requirements-dev.txt -r requirements-test.txt
 (venv) $ pip install -r requirements.txt
 ```
