@@ -220,6 +220,8 @@ $ make openapi_spec.yml
 $ make html  # or another end documentation format e.g. epub
 ```
 
+A live deployment to GitHub Pages can be found at https://liam-deacon.github.io/online-store-rest-api/
+
 ## TODO 📝
 
 - [x] Build script / CI using GitHub Actions
