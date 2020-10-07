@@ -16,7 +16,7 @@ packaging
 bandit
 # git+https://github.com/liam-deacon/dodgy  # PR16 pending: Has UTF8 encoding fixes and CLI + CI via GitHub Actions
 safety
-yolk3k  # get status of development
+# yolk3k  # get status of development
 
 # linters
 autopep8
