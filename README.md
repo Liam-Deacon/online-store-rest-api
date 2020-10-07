@@ -226,7 +226,7 @@ A live deployment to GitHub Pages can be found at https://liam-deacon.github.io/
 
 - [x] Build script / CI using GitHub Actions
 - [x] Sphinx documentation support
-- [ ] Deploy API documentation to GitHub Pages via Actions
+- [x] Deploy API documentation to GitHub Pages via Actions
 - [ ] Test SqlDatabaseGiftList
 - [ ] Automated tests for REST API
 - [x] shields.io support for README badges
