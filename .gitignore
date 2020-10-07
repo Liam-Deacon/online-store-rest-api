@@ -2,6 +2,10 @@ dist/
 build/
 node_modules/
 
+.coverage
+coverage.xml
+htmlcov/
+
 __pycache__/
 
 store.db
