@@ -3,16 +3,13 @@
 # type: ignore
 """Setup script for package."""
 import os
-import sys
 import configparser
-import datetime
+from setuptools import find_packages, setup
 
 setup_kwargs = {}
 
-from setuptools import find_packages, setup
-
 try:
-    import pbr
+    import pbr  # noqa
 
     setup_kwargs['pbr'] = True
 except ImportError:
@@ -28,10 +25,12 @@ CONSOLE_SCRIPTS = []
 parser = configparser.ConfigParser()
 parser.read('%s/setup.cfg' % here)
 
-install_requirements = [line.split('#')[0].strip(' ')
-                        for line in open('%s/requirements.txt' % here).readlines()
-                        if line and line.split('#')[0] and
-                        not line.startswith('git+')]  # can't currently handle git URLs unless using PBR
+with open('%s/requirements.txt' % here) as requirements_fp:
+    install_requirements = [line.split('#')[0].strip(' ')
+                            for line in requirements_fp.readlines()
+                            if line and line.split('#')[0] and
+                            not line.startswith('git+')]
+    # NOTE: can't currently handle git URLs unless using PBR
 
 setup_kwargs['install_requires'] = install_requirements
 
@@ -41,24 +40,29 @@ try:
 
     config = read_configuration('%s/setup.cfg' % here)
     metadata = config['metadata']
-    metadata['summary'] = metadata.get('summary', metadata['description'].split('\n')[0])
+    metadata['summary'] = \
+        metadata.get('summary', metadata['description'].split('\n')[0])
     if setup_kwargs.pop('pbr', False) is not True:
         setup_kwargs.update(metadata)
-        # explicitly compile a master list of install requirements - workaround for bug with PBR & bdist_wheel
-        setup_kwargs['install_requires'] = list(set(list(setup_kwargs.get('install_requires',
-                                                                          config.get('options', {})
-                                                                                .get('install_requires', []))) +
-                                                    install_requirements))
+        # NOTE: explicitly compile a master list of install requirements
+        # Needed as workaround for bug with PBR & bdist_wheel
+        setup_kwargs['install_requires'] = \
+            list(set(list(setup_kwargs.get('install_requires',
+                                           config.get('options', {})
+                                                 .get('install_requires', []))) +  # noqa
+                                           install_requirements))
 
 except ImportError:
     metadata = {}
 finally:
-    readme_filename = '%s/%s' % (here, parser['metadata']['description-file'].strip())
+    readme_filename = \
+        '%s/%s' % (here, parser['metadata']['description-file'].strip())
     with open(readme_filename) as f_desc:
         long_description = f_desc.read()
         setup_kwargs['long_description'] = long_description
 
-    # check whether we are using Markdown instead of Restructured Text and update setup accordingly
+    # check whether we are using Markdown instead of Restructured Text
+    # and update setup accordingly
     if readme_filename.lower().endswith('.md'):
         setup_kwargs['long_description_content_type'] = 'text/markdown'
 
