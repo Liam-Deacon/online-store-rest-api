@@ -4,13 +4,13 @@
 <!--lint disable no-inline-padding-->
 
 [![ ](https://img.shields.io/pypi/pyversions/metapandas.svg?logo=python)](https://pypi.org/pypi/metapandas/)
-[![ ](https://coveralls.io/repos/github/liam-deacon/online-store-rest-api/badge.svg?branch=main)](https://coveralls.io/github/liam-deacon/online-store-rest-api?branch=main)
-[![ ](https://codecov.io/gh/liam-deacon/online-store-rest-api/branch/main/graph/badge.svg)](https://codecov.io/gh/liam-deacon/online-store-rest-api)
+[![ ](https://coveralls.io/repos/github/liam-deacon/online-store-rest-api/badge.svg?branch=master)](https://coveralls.io/github/liam-deacon/online-store-rest-api?branch=master)
+[![ ](https://codecov.io/gh/liam-deacon/online-store-rest-api/branch/master/graph/badge.svg)](https://codecov.io/gh/liam-deacon/online-store-rest-api)
 [![ ](https://api.codacy.com/project/badge/Grade/de571d98b5ed4203b6eda5f927c8835d)](https://www.codacy.com/gh/LightBytes/metapandas?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=liam-deacon/online-store-rest-api&amp;utm_campaign=Badge_Grade)
 [![ ](https://img.shields.io/codefactor/grade/github/LightSlayer/metapandas?logo=codefactor)](https://www.codefactor.io/repository/github/liam-deacon/online-store-rest-api)
 ![ ](https://img.shields.io/badge/dev-Open%20in%20Gitpod-blue?logo=gitpod&link=https://gitpod.io/#https://github.com/liam-deacon/online-store-rest-api)
 [![ ](https://camo.githubusercontent.com/52feade06f2fecbf006889a904d221e6a730c194/68747470733a2f2f636f6c61622e72657365617263682e676f6f676c652e636f6d2f6173736574732f636f6c61622d62616467652e737667)](https://colab.research.google.com/github/liam-deacon/online-store-rest-api)
-[![ ](https://img.shields.io/badge/Binder%20Launch:-Jupyter%20Lab-blue.svg?colorA=&logo=data:image/png;base64,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)](https://mybinder.org/v2/gh/liam-deacon/online-store-rest-api/main?urlpath=lab)
+[![ ](https://img.shields.io/badge/Binder%20Launch:-Jupyter%20Lab-blue.svg?colorA=&logo=data:image/png;base64,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)](https://mybinder.org/v2/gh/liam-deacon/online-store-rest-api/master?urlpath=lab)
 
 <!--lint enable no-inline-padding-->
 
@@ -39,10 +39,10 @@ The user must be able to:
 
 There are two concrete implementations for realising a gift list with the following classes from `online_store/backend/gift_list.py`:
 
-- `BasicGiftList`, a pure python implementation of a gift list.
+- `BasicGiftList`, a pure python implementation of a gift list **(Well Tested)**.
 - `SqlDatabaseGiftList`, an SQL ORM based implementation of a gift list for use within a flask (or Django) REST API app. In this example, the ORM models are found in `online_store/backend/models/` and the REST API is implemented in `online_store/backend/routes/gifts.py`
 
-### Development Setup
+### Development Setup ⚙️
 
 ```bash
 $ npm install  # needed for Swagger JSON to OAS YAML spec conversion
@@ -52,7 +52,7 @@ $ source venv/bin/activate
 (venv) $ pip install -r requirements.txt
 ```
 
-### Testing
+### Testing 🧪
 
 `setup.cfg` has configured `pytest` to collect coverage information and can be run as follows:
 
@@ -60,7 +60,7 @@ $ source venv/bin/activate
 (venv) $ PYTHONPATH='.' py.test 
 ```
 
-### Basic Gift List Implementation
+### Basic Gift List Implementation 🎁
 
 The following showcases a simple python implementation of the gift list:
 
@@ -96,7 +96,7 @@ Available items:
   - {'id': 2, 'name': 'Cast Iron Oval Casserole - 25cm; Volcanic', 'brand': 'Le Creuset', 'price': '210.00GBP', 'in_stock_quantity': 27} (quantity: 2)
 ```
 
-### Flask REST API + SQL ORM Implementation 
+### Flask REST API + SQL ORM Implementation 🌍🕸️
 
 Alternatively there is a REST API, which can be run with:
 
@@ -195,24 +195,33 @@ $ curl -X GET -H  "accept: application/json" -H  "Authorization: Bearer $TOKEN" 
 
 ```
 
-## Bonus Features
+## Bonus Features ✨
 
 There are currently a number of extra features, which help 
 
 - User-friendly backend application logging using `loguru` python package.
-- Containerisation using Docker - see `DockerFile`
+- Simple containerisation using Docker - see `DockerFile`
 - Authentication using JSON web tokens via [flask-jwt-extended]() middleware.
 - [OpenAPI Specification (OAS)](https://swagger.io/specification/) conformant client documentation generated using [flasgger](https://github.com/flasgger/flasgger) and viewable via SwaggerUI [/apidocs](localhost:5000/apidocs) endpoint when running the flask server.
-- Build script / CI using GitHub Actions
 - Persistent data storage using SQL Database modelled using [sqlalchemy](https://docs.sqlalchemy.org/en/13/intro.html) ORM.
 
-## Improvements
+## TODO 📝
+
+- [ ] Build script / CI using GitHub Actions
+- [ ] Sphinx documentation support
+- [ ] Deploy API documentation to GitHub Pages via Actions
+- [ ] Test SqlDatabaseGiftList
+- [ ] Automated tests for REST API
+- [ ] shields.io support for README badges
+- [ ] Add linting to CI
+- [ ] Build and deploy docker image(s) to dockerhub via CI/CD
+
+## Future Improvements 🔮
 
 Given more time, the following improvements could be made:
 
-- Write frontend in React or maybe Vue.js
-- Create `docker-compose.yml` multi-container Docker compose script for orchestrating frontend, backend and database.
-- Implement missing features in the code (i.e. wherever `NotImplementError` is raised)
-- Code tidy and refactor
-- Increase code coverage (aiming for nirvana at 100%)
-
+- [ ] Write frontend in React (or maybe Vue.js)
+- [ ] Create `docker-compose.yml` multi-container Docker compose script for orchestrating frontend, backend and database (e.g. React/NPM-based, Flask, Postgres).
+- [ ] Implement missing features in the code (i.e. wherever `NotImplementError` is raised)
+- [ ] Code tidy and refactor
+- [ ] Increase overall code coverage (aiming for nirvana at 100%)
