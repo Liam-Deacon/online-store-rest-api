@@ -206,16 +206,29 @@ There are currently a number of extra features, which help
 - [OpenAPI Specification (OAS)](https://swagger.io/specification/) conformant client documentation generated using [flasgger](https://github.com/flasgger/flasgger) and viewable via SwaggerUI [/apidocs](localhost:5000/apidocs) endpoint when running the flask server.
 - Persistent data storage using SQL Database modelled using [sqlalchemy](https://docs.sqlalchemy.org/en/13/intro.html) ORM.
 
+### Developer Documentation 📗
+
+The Sphinx documentation builder is currently used to extract python docstrings and the OpenAPI spec of the REST API.
+
+To build the documentation:
+
+```bash
+$ cd docs/
+$ make openapi_spec.yml
+$ make html  # or another end documentation format e.g. epub
+```
+
 ## TODO 📝
 
 - [x] Build script / CI using GitHub Actions
-- [ ] Sphinx documentation support
+- [x] Sphinx documentation support
 - [ ] Deploy API documentation to GitHub Pages via Actions
 - [ ] Test SqlDatabaseGiftList
 - [ ] Automated tests for REST API
-- [ ] shields.io support for README badges
+- [x] shields.io support for README badges
 - [ ] Add linting to CI
 - [x] Build and deploy docker image(s) to dockerhub via CI/CD
+- [ ] Deploy flask app to Heroku for demo purposes.
 
 ## Future Improvements 🔮
 
