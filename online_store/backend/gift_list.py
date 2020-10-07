@@ -100,12 +100,21 @@ class BasicGiftList(AbstractGiftList):
         item: Dict[str, Any]
             A JSON compatible dictionary representation of item.
 
+        Raises
+        ------
+        ValueError
+            When quantity is not a positive integer.
+
         Notes
         -----
         It is up to the user to correctly represent the item when adding.
         """
         if item not in self.gift_list:
             self.gift_list.append(item)
+        if not isinstance(quantity, int):
+            raise ValueError(f'quantity must be an int, not {type(quantity)}')
+        elif quantity <= 0:
+            raise ValueError('quantity must be a positive integer')
         self._availability_map[frozenset(item.items())] += quantity
 
     def remove_item(self, item: Dict[str, Any]):
