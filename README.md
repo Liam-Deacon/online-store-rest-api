@@ -52,6 +52,14 @@ $ source venv/bin/activate
 (venv) $ pip install -r requirements.txt
 ```
 
+### Testing
+
+`setup.cfg` has configured `pytest` to collect coverage information and can be run as follows:
+
+```bash
+(venv) $ PYTHONPATH='.' py.test 
+```
+
 ### Basic Gift List Implementation
 
 The following showcases a simple python implementation of the gift list:
