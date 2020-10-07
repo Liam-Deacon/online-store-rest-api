@@ -2,7 +2,8 @@
 
 
 <!--lint disable no-inline-padding-->
-
+![Python CI](https://github.com/Liam-Deacon/online-store-rest-api/workflows/Python%20CI/badge.svg)
+![Backend Docker CI/CD](https://github.com/Liam-Deacon/online-store-rest-api/workflows/Backend%20Docker%20CI/CD/badge.svg)
 [![ ](https://img.shields.io/pypi/pyversions/metapandas.svg?logo=python)](https://pypi.org/pypi/metapandas/)
 [![ ](https://coveralls.io/repos/github/liam-deacon/online-store-rest-api/badge.svg?branch=master)](https://coveralls.io/github/liam-deacon/online-store-rest-api?branch=master)
 [![ ](https://codecov.io/gh/liam-deacon/online-store-rest-api/branch/master/graph/badge.svg)](https://codecov.io/gh/liam-deacon/online-store-rest-api)
