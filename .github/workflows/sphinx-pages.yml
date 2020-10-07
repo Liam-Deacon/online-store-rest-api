@@ -42,7 +42,7 @@ jobs:
           ls -l
           ls -l ../
           ls -l ../../
-          make html
+          make html && touch build/html/.nojekyll 
 
       - name: Deploy 🚀
         if: ${{ github.ref == 'refs/heads/master' }}

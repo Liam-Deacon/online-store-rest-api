@@ -1,4 +1,4 @@
-Welcome to the `online-stire-rest-api` documentation!
+Welcome to the `online-store-rest-api` documentation!
 =====================================================
 
 .. toctree::
