@@ -3,7 +3,7 @@ build/
 node_modules/
 docs/build/
 
-.coverage
+.coverage*
 coverage.xml
 htmlcov/
 

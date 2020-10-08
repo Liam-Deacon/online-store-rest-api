@@ -1,3 +1,5 @@
 nose
 pytest
 pytest-cov
+pytest-diff
+pytest-parallel
