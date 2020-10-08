@@ -185,10 +185,10 @@ class SqlDatabaseGiftList(AbstractGiftList):
     """A gift list implementation using SQL ORM models."""
     def __init__(self, username_or_id):
         self.user = self.get_user(username_or_id)
-        self.gift_list = (
-            GiftListModel.query.filter_by(user_id=self._get_user_id()).first()
-            or self.create_giftlist()
-        )
+        self.gift_list = \
+            GiftListModel.query \
+                         .filter_by(user_id=self._get_user_id()) \
+                         .first() or self.create_list()
 
     def _get_user_id(self) -> int:
         """Helper method to return a user id."""
