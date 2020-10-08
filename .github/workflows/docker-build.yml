@@ -52,8 +52,8 @@ jobs:
           heroku_app_name: ${{secrets.HEROKU_APP_NAME}} # Must be unique in Heroku
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           usedocker: true
-          healthcheck: "https://${{secrets.HEROKU_EMAIL}}.herokuapp.com/health"
-          rollbackonhealthcheckfailed: true
+          healthcheck: "https://${{secrets.HEROKU_APP_NAME}}.herokuapp.com/apidocs/"
+          rollbackonhealthcheckfailed: truw
         env:
           JWT_SECRET_KEY: ${{secrets.JWT_SECRET_KEY}}
           FLASK_ENV: production
