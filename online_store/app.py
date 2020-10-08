@@ -22,6 +22,9 @@ from .backend.routes.gifts import gifts_router as backend_gifts_router
 from .backend.routes.store import store_router as backend_store_router
 from .backend.routes.terms_of_use import terms_of_user_router
 
+# jwt callbacks
+from .backend.utils import jwt_callbacks
+
 __author__ = "Liam Deacon"
 __description__ = "Wedding Gift List"
 
@@ -97,6 +100,23 @@ def load_config(app: Flask, config: Mapping[str, Any] = {}):
     logger.debug(f'App config is {app.config}')
 
 
+def setup_jwt(app: Flask) -> JWTManager:
+    """Adds JWT middleware and configures callbacks."""
+    jwt = JWTManager(app)  # TODO: use jwt
+
+    # Add the following callbacks for consistent backend JSON API response
+    jwt.expired_token_loader(jwt_callbacks.jsonified_expired_token_callback)
+    jwt.needs_fresh_token_loader(
+        jwt_callbacks.jsonified_needs_fresh_token_callback)
+    jwt.invalid_token_loader(jwt_callbacks.jsonified_invalid_token_callback)
+    jwt.revoked_token_loader(jwt_callbacks.jsonified_revoked_token_callback)
+    jwt.token_in_blacklist_loader(jwt_callbacks.jsonified_token_in_blacklist_callback)
+    jwt.user_loader_error_loader(jwt_callbacks.jsonified_user_loader_error_callback)
+    jwt.unauthorized_loader(jwt_callbacks.jsonified_unauthorized_callback)
+
+    return jwt
+
+
 def create_app(*args, **kwargs) -> Flask:
     """Function for creating the flask app instance.
 
@@ -119,7 +139,7 @@ def create_app(*args, **kwargs) -> Flask:
     load_config(app, config or {})
 
     # Apply JWT authentication middleware
-    jwt = JWTManager(app)  # TODO: use jwt
+    jwt: JWTManager = setup_jwt(app)  # noqa
 
     # Add Swagger apidocs
     Swagger(app,
