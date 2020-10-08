@@ -17,6 +17,7 @@ from flask_jwt_extended import (
     jwt_required, create_access_token, get_jwt_identity,
     jwt_refresh_token_required, get_raw_jwt
 )
+from flask_jwt_extended.utils import create_refresh_token
 from loguru import logger
 import sqlalchemy
 
@@ -29,7 +30,8 @@ blacklisted_tokens = set()
 
 
 def check_request_json(
-        needed_keys: Iterable[str] = ['username', 'password']) -> tuple:
+        needed_keys: Iterable[str] = ['username', 'password'],
+        accept_empty: bool = False) -> tuple:
     """Checks JSON in HTTP request and raises ValueError if needed_keys
     are missing.
 
@@ -37,6 +39,8 @@ def check_request_json(
     ----------
     needed_keys: List[str]
         A set of keys that must be included within JSON data.
+    accept_empty: bool
+        Determines whether to accept empty string value for a given key.
 
     Returns
     -------
@@ -46,7 +50,7 @@ def check_request_json(
     Raises
     ------
     ValueError
-        When reuqest is invalid or not all needed_keys are found in JSON data.
+        When request is invalid or not all needed_keys are found in JSON data.
 
     """
     if not request.is_json:
@@ -59,7 +63,7 @@ def check_request_json(
 
     data = request.get_json(force=True)
     for key in needed_keys:
-        if key not in data:
+        if key not in data or (not accept_empty and not data[key]):
             raise ValueError(f'Missing {key} parameter')
 
     return tuple((request.json.get(key) for key in needed_keys))
@@ -85,6 +89,8 @@ def login():
         description: User successfully logged in.
       400:
         description: User login failed.
+      401:
+        description: Invalid username or password.
     tags:
         - authentication
     """
@@ -96,14 +102,18 @@ def login():
     user = UserModel.query.filter_by(username=username).first()
     if not user:
         return jsonify({'msg': 'Invalid username',
-                        'status': 'error', 'code': 400}), 400
+                        'status': 'error', 'code': 401}), 401
     elif not UserModel.verify_hash(password, user.password):
         return jsonify({'msg': 'Invalid password',
-                        'status': 'error', 'code': 400}), 400
+                        'status': 'error', 'code': 401}), 401
 
     # Identity can be any data that is json serialisable
-    access_token = create_access_token(identity=username)
-    return jsonify(access_token=access_token, status='ok', code=200), 200
+    access_token = create_access_token(identity=username, fresh=True)
+    refresh_token = create_refresh_token(identity=username)
+    return jsonify(access_token=access_token,
+                   refresh_token=refresh_token,
+                   msg='Successfully logged in',
+                   status='ok', code=200), 200
 
 
 @auth_router.route('/refresh', methods=['POST'])
@@ -134,7 +144,7 @@ def refresh():
     """
     current_user = get_jwt_identity()
     ret = {
-        'access_token': create_access_token(identity=current_user),
+        'access_token': create_access_token(identity=current_user, fresh=False),
         'status': 'ok',
         'code': 200
     }
@@ -229,7 +239,7 @@ def register():
     """
     code = 200
     status = 'ok'
-    msg = 'success'
+    msg = 'Registration successful'
 
     try:
         username, password, email = \

@@ -29,7 +29,7 @@ class UserRole(Enum):
 
 class UserModel(db.Model):
     """Model representing a user.
-    
+
     Attributes
     ----------
     id: int

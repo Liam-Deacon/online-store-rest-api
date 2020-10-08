@@ -2,26 +2,36 @@ import os
 import tempfile
 
 import pytest
-from online_store.app import create_app
-# from flaskr import create_app
-# from flaskr.db import get_db, init_db
 
-# with open(os.path.join(os.path.dirname(__file__), 'data.sql'), 'rb') as f:
-#     _data_sql = f.read().decode('utf8')
+from loguru import logger
+from pathlib import Path
+from flask_jwt_extended import create_access_token, create_refresh_token
+
+from online_store.app import create_app
+from online_store.backend.models.database import db, get_db
+
+try:
+    with open(Path(__file__).parent / 'data.sql', 'rb') as f:
+        _data_sql = f.read().decode('utf8')
+except FileNotFoundError as err:
+    logger.warning(err)
+    _data_sql = ";"
 
 
 @pytest.fixture
 def app():
     db_fd, db_path = tempfile.mkstemp()
 
-    app = create_app({
+    app = create_app(config={
         'TESTING': True,
         'DATABASE': db_path,
+        'SQLALCHEMY_DATABASE_URI': f'sqlite:///{db_path}',
+        'SQLALCHEMY_TRACK_MODIFICATIONS': False
     })
 
-    # with app.app_context():
+    with app.app_context():
     #     init_db()
-    #     get_db().executescript(_data_sql)
+        get_db().executescript(_data_sql)
 
     yield app
 
@@ -37,6 +47,26 @@ def client(app):
 @pytest.fixture
 def runner(app):
     return app.test_cli_runner()
+
+
+@pytest.fixture
+def test_auth_headers(app):
+    with app.app_context():
+        access_token = create_access_token('test')
+        headers = {
+            'Authorization': 'Bearer {}'.format(access_token)
+        }
+        yield headers
+
+
+@pytest.fixture
+def test_auth_headers_with_refresh_token(app):
+    with app.app_context():
+        access_token = create_refresh_token('test')
+        headers = {
+            'Authorization': 'Bearer {}'.format(access_token)
+        }
+        yield headers
 
 
 class AuthActions(object):
