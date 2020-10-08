@@ -2,6 +2,7 @@ import pytest
 import json
 
 from flask import g, session
+from http import HTTPStatus
 from online_store.db import get_db
 
 
@@ -75,7 +76,9 @@ def test_register_user_data_not_unique(client, app):
         ('a', None, '', 'Missing password parameter', 400),
         ('b', 'b', '', 'Missing email parameter', 400),
         ('b', 'b', None, 'Missing email parameter', 400),
-        ('test', 'test', 'test@test.com', 'Registration successful', 200),
+        ('b', 'b', 'b@b.com', 'Registration successful', 200),
+        ('test', 'b', 'c@c.com', 'username is not unique', 400),
+        ('c', 'c', 'test@test.com', 'email is not unique', 400)
     )
 )
 def test_register_validate_input(client, username, password,
@@ -103,3 +106,45 @@ def test_register_validate_input(client, username, password,
     assert 'status' in data
     assert data['status'] == ('error' if code != 200 else 'ok')
     assert code == response.status_code
+
+
+@pytest.mark.skip(reason="TODO")
+def test_login_successful():
+    raise NotImplementedError
+
+
+@pytest.mark.skip(reason="TODO")
+def test_login_failure():
+    raise NotImplementedError
+
+
+@pytest.mark.parametrize(
+    ('method', 'code'),
+    [('POST', 405),
+     ('GET', 405),
+     ('DELETE', 200)]
+)
+def test_logout_successful(client, test_auth_headers, method, code):
+    request = getattr(client, method.lower())
+    response = request('/api/v1/auth/logout', headers=test_auth_headers)
+    assert response.status_code == code
+    if code == 200:
+        data = json.loads(response.get_data().decode())
+        assert 'msg' in data
+        assert data['msg'] == 'Successfully logged out'
+        assert 'status' in data
+        assert data['status'] == 'ok'
+        assert 'code' in data
+        assert data['code'] == 200
+
+
+def test_logout_no_token(client, app):
+    response = client.delete('/api/v1/auth/logout')
+    assert response.status_code == HTTPStatus.UNAUTHORIZED
+    data = json.loads(response.get_data().decode())
+    assert 'msg' in data
+    assert data['msg'] == 'Successfully logged out'
+    assert 'status' in data
+    assert data['status'] == 'ok'
+    assert 'code' in data
+    assert data['code'] == 200

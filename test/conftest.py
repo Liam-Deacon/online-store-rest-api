@@ -5,6 +5,7 @@ import pytest
 
 from loguru import logger
 from pathlib import Path
+from flask_jwt_extended import create_access_token
 
 from online_store.app import create_app
 from online_store.backend.models.database import db, get_db
@@ -46,6 +47,16 @@ def client(app):
 @pytest.fixture
 def runner(app):
     return app.test_cli_runner()
+
+
+@pytest.fixture
+def test_auth_headers(app):
+    with app.app_context():
+        access_token = create_access_token('test')
+        headers = {
+            'Authorization': 'Bearer {}'.format(access_token)
+        }
+        yield headers
 
 
 class AuthActions(object):
