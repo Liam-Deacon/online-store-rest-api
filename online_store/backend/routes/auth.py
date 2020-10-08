@@ -29,7 +29,8 @@ blacklisted_tokens = set()
 
 
 def check_request_json(
-        needed_keys: Iterable[str] = ['username', 'password']) -> tuple:
+        needed_keys: Iterable[str] = ['username', 'password'],
+        accept_empty: bool = False) -> tuple:
     """Checks JSON in HTTP request and raises ValueError if needed_keys
     are missing.
 
@@ -37,6 +38,8 @@ def check_request_json(
     ----------
     needed_keys: List[str]
         A set of keys that must be included within JSON data.
+    accept_empty: bool
+        Determines whether to accept empty string value for a given key.
 
     Returns
     -------
@@ -46,7 +49,7 @@ def check_request_json(
     Raises
     ------
     ValueError
-        When reuqest is invalid or not all needed_keys are found in JSON data.
+        When request is invalid or not all needed_keys are found in JSON data.
 
     """
     if not request.is_json:
@@ -59,7 +62,7 @@ def check_request_json(
 
     data = request.get_json(force=True)
     for key in needed_keys:
-        if key not in data:
+        if key not in data or (not accept_empty and not data[key]):
             raise ValueError(f'Missing {key} parameter')
 
     return tuple((request.json.get(key) for key in needed_keys))
@@ -229,7 +232,7 @@ def register():
     """
     code = 200
     status = 'ok'
-    msg = 'success'
+    msg = 'Registration successful'
 
     try:
         username, password, email = \
