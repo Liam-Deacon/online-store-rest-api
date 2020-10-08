@@ -143,8 +143,8 @@ def test_logout_no_token(client, app):
     assert response.status_code == HTTPStatus.UNAUTHORIZED
     data = json.loads(response.get_data().decode())
     assert 'msg' in data
-    assert data['msg'] == 'Successfully logged out'
+    assert data['msg'] == 'Unauthorised: No access token in quest header'
     assert 'status' in data
-    assert data['status'] == 'ok'
+    assert data['status'] == 'error'
     assert 'code' in data
-    assert data['code'] == 200
+    assert data['code'] == HTTPStatus.UNAUTHORIZED
