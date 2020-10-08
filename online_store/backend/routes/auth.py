@@ -17,6 +17,7 @@ from flask_jwt_extended import (
     jwt_required, create_access_token, get_jwt_identity,
     jwt_refresh_token_required, get_raw_jwt
 )
+from flask_jwt_extended.utils import create_refresh_token
 from loguru import logger
 import sqlalchemy
 
@@ -88,6 +89,8 @@ def login():
         description: User successfully logged in.
       400:
         description: User login failed.
+      401:
+        description: Invalid username or password.
     tags:
         - authentication
     """
@@ -99,14 +102,18 @@ def login():
     user = UserModel.query.filter_by(username=username).first()
     if not user:
         return jsonify({'msg': 'Invalid username',
-                        'status': 'error', 'code': 400}), 400
+                        'status': 'error', 'code': 401}), 401
     elif not UserModel.verify_hash(password, user.password):
         return jsonify({'msg': 'Invalid password',
-                        'status': 'error', 'code': 400}), 400
+                        'status': 'error', 'code': 401}), 401
 
     # Identity can be any data that is json serialisable
-    access_token = create_access_token(identity=username)
-    return jsonify(access_token=access_token, status='ok', code=200), 200
+    access_token = create_access_token(identity=username, fresh=True)
+    refresh_token = create_refresh_token(identity=username)
+    return jsonify(access_token=access_token,
+                   refresh_token=refresh_token,
+                   msg='Successfully logged in',
+                   status='ok', code=200), 200
 
 
 @auth_router.route('/refresh', methods=['POST'])
@@ -137,7 +144,7 @@ def refresh():
     """
     current_user = get_jwt_identity()
     ret = {
-        'access_token': create_access_token(identity=current_user),
+        'access_token': create_access_token(identity=current_user, fresh=False),
         'status': 'ok',
         'code': 200
     }

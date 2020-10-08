@@ -1,7 +1,6 @@
 import pytest
 import json
 
-from flask import g, session
 from http import HTTPStatus
 from online_store.db import get_db
 
@@ -108,14 +107,36 @@ def test_register_validate_input(client, username, password,
     assert code == response.status_code
 
 
-@pytest.mark.skip(reason="TODO")
-def test_login_successful():
-    raise NotImplementedError
+@pytest.mark.parametrize(
+    ('username', 'password', 'msg', 'code'),
+    [('test', 'test', 'Successfully logged in', HTTPStatus.OK),
+     (None, 'test', 'Missing username parameter', HTTPStatus.BAD_REQUEST),
+     ('test', None, 'Missing password parameter', HTTPStatus.BAD_REQUEST),
+     ('test', 'Wrong', 'Invalid password', HTTPStatus.UNAUTHORIZED),
+     ('invalid_user', 'password123', 'Invalid username', HTTPStatus.UNAUTHORIZED)]
+)
+def test_login(client, username, password, msg, code):
+    payload = {
+        'username': username,
+        'password': password
+    }
+    response = client.post(
+        '/api/v1/auth/login',
+        content_type='application/json',
+        data=json.dumps(payload)
+    )
+    assert response.status_code == int(code)
 
-
-@pytest.mark.skip(reason="TODO")
-def test_login_failure():
-    raise NotImplementedError
+    data = json.loads(response.get_data())
+    assert 'msg' in data
+    assert 'status' in data
+    assert 'code' in data
+    assert data['code'] == int(code)
+    assert data['status'] == ('ok' if code == HTTPStatus.OK else 'error')
+    assert data['msg'] == msg
+    if code == HTTPStatus.OK:
+        assert 'access_token' in data
+        assert 'refresh_token' in data
 
 
 @pytest.mark.parametrize(
@@ -138,13 +159,50 @@ def test_logout_successful(client, test_auth_headers, method, code):
         assert data['code'] == 200
 
 
-def test_logout_no_token(client, app):
+def test_logout_no_token(client):
     response = client.delete('/api/v1/auth/logout')
     assert response.status_code == HTTPStatus.UNAUTHORIZED
     data = json.loads(response.get_data().decode())
     assert 'msg' in data
-    assert data['msg'] == 'Unauthorised: No access token in quest header'
+    assert data['msg'] == 'Unauthorised: No access token in request header'
     assert 'status' in data
     assert data['status'] == 'error'
     assert 'code' in data
     assert data['code'] == HTTPStatus.UNAUTHORIZED
+
+
+@pytest.mark.parametrize(
+    ('has_auth_header', 'code'),
+    [(True, HTTPStatus.OK),
+     (False, HTTPStatus.UNAUTHORIZED)]
+)
+def test_refresh(client, test_auth_headers_with_refresh_token, has_auth_header, code):
+    response = client.post(
+        '/api/v1/auth/refresh',
+        headers=test_auth_headers_with_refresh_token if has_auth_header else {}
+    )
+    assert response.status_code == int(code)
+
+
+@pytest.mark.parametrize(
+    ('has_auth_header', 'msg', 'code'),
+    [(True, 'Successfully revoked refresh token', HTTPStatus.OK),
+     (False, 'Unauthorised: No access token in request header', HTTPStatus.UNAUTHORIZED)]
+)
+def test_revoke(client, test_auth_headers_with_refresh_token,
+                has_auth_header, msg, code):
+    response = client.delete(
+        '/api/v1/auth/revoke',
+        headers=test_auth_headers_with_refresh_token if has_auth_header else {}
+    )
+    assert response.status_code == code
+
+    data = json.loads(response.get_data())
+    assert 'msg' in data
+    assert data['msg'] == msg
+    assert 'status' in data
+    assert data['status'] == ('error' if code != HTTPStatus.OK else 'ok')
+    assert 'code' in data
+    assert data['code'] == int(code)
+
+
