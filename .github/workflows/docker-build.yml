@@ -54,7 +54,7 @@ jobs:
           usedocker: true
           healthcheck: "https://${{secrets.HEROKU_EMAIL}}.herokuapp.com/health"
           rollbackonhealthcheckfailed: true
-          env:
-            JWT_SECRET_KEY: ${{secrets.JWT_SECRET_KEY}}
-            FLASK_ENV: production
-            HOST: '0.0.0.0'
+        env:
+          JWT_SECRET_KEY: ${{secrets.JWT_SECRET_KEY}}
+          FLASK_ENV: production
+          HOST: '0.0.0.0'
