@@ -148,7 +148,7 @@ def create_app(*args, **kwargs) -> Flask:
     # check for $PORT environment var used by Heroku, falling back as needed
     # FIXME: shouldn't be needed if $PORT ENV is passed correctly in Dockerfile
     os.environ['FLASK_RUN_PORT'] = \
-        os.environ.get('PORT', os.environ.get('FLASK_RUN_PORT', 5000))
+        os.environ.get('PORT', os.environ.get('FLASK_RUN_PORT', '5000'))
 
     # initialise Flask app, then load config
     config = kwargs.pop('config', {})
