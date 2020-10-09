@@ -1,7 +1,7 @@
 """This module defines the Flask app instance, created using `create_app()`."""
 import os
-import re
 
+from functools import partial
 from collections import defaultdict
 from pathlib import Path
 from typing import Any, Mapping
@@ -17,6 +17,7 @@ from .backend.models.database import db as store_db
 from .backend.models.item import ItemModel  # TODO: refactor, not really needed
 
 # route blueprints
+from .backend.routes.default import default_router as backend_default_router
 from .backend.routes.auth import auth_router as backend_auth_router
 from .backend.routes.gifts import gifts_router as backend_gifts_router
 from .backend.routes.store import store_router as backend_store_router
@@ -27,6 +28,14 @@ from .backend.utils import jwt_callbacks
 
 __author__ = "Liam Deacon"
 __description__ = "Wedding Gift List"
+
+
+def get_app_config(key: str, default: Any = None,
+                   config: dict = {}, app_config: dict = {}):
+    """Get config from os.environ, falling back to config, then app_config."""
+    key = key.upper()
+    value = os.environ.get(key, config.get(key, app_config.get(key, default)))
+    return value
 
 
 def load_config(app: Flask, config: Mapping[str, Any] = {}):
@@ -54,12 +63,14 @@ def load_config(app: Flask, config: Mapping[str, Any] = {}):
     logger.debug(f'Loaded Flask config from {config}')
     # logger.debug(f'User environment is: {os.environ}')
 
-    def set_config(key: str, default: Any = None):
+    get_config = partial(get_app_config, config=config, app_config=app.config)
+
+    def set_config(key: str, default: Any = None) -> Any:
         """Set config from os.environ, falling back to config mapping."""
-        key = key.upper()
-        value = os.environ.get(key, config.get(key, default))
+        value = get_config(key, default)
         if value is not None:
             app.config[key] = value
+        return value
 
     set_config('FLASK_ENV', 'development')
     set_config('SQLALCHEMY_DATABASE_URI',
@@ -134,6 +145,12 @@ def create_app(*args, **kwargs) -> Flask:
         (and thoroughly) tested.
 
     """
+    # check for $PORT environment var used by Heroku, falling back as needed
+    # FIXME: shouldn't be needed if $PORT ENV is passed correctly in Dockerfile
+    os.environ['FLASK_RUN_PORT'] = \
+        os.environ.get('PORT', os.environ.get('FLASK_RUN_PORT', '5000'))
+
+    # initialise Flask app, then load config
     config = kwargs.pop('config', {})
     app = Flask(__name__, *args, **kwargs)
     load_config(app, config or {})
@@ -185,9 +202,13 @@ def create_app(*args, **kwargs) -> Flask:
         if len(ItemModel.query.all()) == 0:
             product_json_path = Path(__file__).parent.parent / 'products.json'
             logger.info(f'Loading JSON data from {product_json_path}')
-            ItemModel.load_json(product_json_path)
+            try:
+                ItemModel.load_json(product_json_path)
+            except FileNotFoundError as err:
+                logger.warning(f'Cannot load JSON data due to: {err}')
 
     # # Register blueprint routes.
+    app.register_blueprint(backend_default_router, url_prefix="")  # careful!
     app.register_blueprint(backend_store_router, url_prefix="/api/v1/store")
     app.register_blueprint(backend_auth_router, url_prefix="/api/v1/auth")
     app.register_blueprint(backend_gifts_router, url_prefix="/api/v1/gifts")

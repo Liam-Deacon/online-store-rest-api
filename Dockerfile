@@ -3,10 +3,21 @@ FROM python:3.7-alpine
 
 # install project dependencies
 COPY requirements.txt /
-RUN pip install -r /requirements.txt
-COPY online_store/ /app
+RUN python3 -m pip install --no-cache -r /requirements.txt
+RUN python3 -m pip install --no-cache gunicorn
+
+# configure flask app
+WORKDIR /flask_app
+
+COPY online_store ./online_store
+COPY manage.py .
+COPY products.json .
 
 # run flask app
-WORKDIR /app
-ENV FLASK_DEBUG=1
-CMD ["flask", "run"]
+ENV PORT=8000
+ENV FLASK_APP_PORT=5000
+ENV FLASK_APP=online_store.app:create_app
+ENV PYTHONPATH=.
+# CMD ["python3", "manage.py", "run"]
+# CMD ["gunicorn", "$FLASK_APP()", "-b", "0.0.0.0:$PORT", "-w3"]
+CMD ["python3", "-m", "online_store"]
