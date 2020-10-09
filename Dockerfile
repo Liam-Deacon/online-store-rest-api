@@ -11,4 +11,4 @@ COPY manage.py /flask_app/
 WORKDIR /flask_app
 ENV FLASK_APP=online_store.app:create_app
 ENV PYTHONPATH=.
-CMD ["ls -l", "&&", "python3", "-m", "manage.py", "run"]
+CMD ["python3", "-m", "manage.py", "run"]
