@@ -4,6 +4,7 @@
 <!--lint disable no-inline-padding-->
 [![ ](https://img.shields.io/static/v1?label=demo&message=REST%20API&color=darkorchid&logo=Heroku&logoColor=white)](https://online-store-flask-rest-api.herokuapp.com/apidocs/)
 [![ ](https://img.shields.io/static/v1?label=docs&message=GitHub%20Pages&color=orange&logo=Read%20The%20Docs&logoColor=white)](https://liam-deacon.github.io/online-store-rest-api/)
+[[![GitHub pull-requests closed](https://img.shields.io/github/issues-pr-closed/liam-deacon/online-store-rest-api.svg)](https://GitHub.com/liam-deacon/online-store-rest-api/pull/)](https://github.com/Liam-Deacon/online-store-rest-api/pulls)
 [![Python CI](https://github.com/Liam-Deacon/online-store-rest-api/workflows/Python%20CI/badge.svg)](https://github.com/Liam-Deacon/online-store-rest-api/actions?query=workflow%3A"Python+CI")
 [![Backend Docker CI/CD](https://github.com/Liam-Deacon/online-store-rest-api/workflows/Backend%20Docker%20CI/CD/badge.svg)](https://github.com/Liam-Deacon/online-store-rest-api/actions?query=workflow%3A%22Backend+Docker+CI%2FCD%22)
 [![Sphinx Documentation CI](https://github.com/Liam-Deacon/online-store-rest-api/workflows/Sphinx%20Documentation%20CI/badge.svg)](https://github.com/Liam-Deacon/online-store-rest-api/actions?query=workflow%3A%22Sphinx+Documentation+CI%22)
