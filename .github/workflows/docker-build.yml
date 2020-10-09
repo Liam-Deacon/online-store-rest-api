@@ -53,7 +53,7 @@ jobs:
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           usedocker: true
           healthcheck: "https://${{secrets.HEROKU_APP_NAME}}.herokuapp.com/apidocs/"
-          rollbackonhealthcheckfailed: truw
+          rollbackonhealthcheckfailed: true
         env:
           JWT_SECRET_KEY: ${{secrets.JWT_SECRET_KEY}}
           FLASK_ENV: production
