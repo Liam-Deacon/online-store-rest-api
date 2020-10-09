@@ -4,9 +4,10 @@ FROM python:3.7-alpine
 # install project dependencies
 COPY requirements.txt /
 RUN python3 -m pip install --no-cache -r /requirements.txt
-COPY manage.py /
-COPY online_store/ /flask_app
+COPY online_store /flask_app/
+COPY manage.py /flask_app/
 
 # run flask app
-CMD ["FLASK_APP=flask_app.app:create_app", \
-     "python3", "-m", "manage.py", "run"]
+WORKDIR /flask_app
+ENV FLASK_APP=online_store.app:create_app
+CMD ["python3", "-m", "manage.py", "run"]
