@@ -202,7 +202,10 @@ def create_app(*args, **kwargs) -> Flask:
         if len(ItemModel.query.all()) == 0:
             product_json_path = Path(__file__).parent.parent / 'products.json'
             logger.info(f'Loading JSON data from {product_json_path}')
-            ItemModel.load_json(product_json_path)
+            try:
+                ItemModel.load_json(product_json_path)
+            except FileNotFoundError as err:
+                logger.warning(f'Cannot load JSON data due to: {err}')
 
     # # Register blueprint routes.
     app.register_blueprint(backend_default_router, url_prefix="")  # careful!
