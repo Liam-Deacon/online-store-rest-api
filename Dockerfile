@@ -15,4 +15,4 @@ COPY products.json .
 # run flask app
 ENV FLASK_APP=online_store.app:create_app
 ENV PYTHONPATH=.
-CMD ["python3", "-m", "manage.py", "run"]
+CMD ["python3", "manage.py", "run"]
