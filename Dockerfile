@@ -19,4 +19,5 @@ ENV FLASK_APP_PORT=5000
 ENV FLASK_APP=online_store.app:create_app
 ENV PYTHONPATH=.
 # CMD ["python3", "manage.py", "run"]
-CMD ["gunicorn", "$FLASK_APP()", "-b", "0.0.0.0:$PORT", "-w3"]
+# CMD ["gunicorn", "$FLASK_APP()", "-b", "0.0.0.0:$PORT", "-w3"]
+CMD ["python3", "-m", "online_store"]
