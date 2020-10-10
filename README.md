@@ -20,7 +20,29 @@
 
 <!--lint enable no-inline-padding-->
 
-## Background:
+## Components 📲🧩
+
+There is a Vue.js based front-end for displaying reactive web pages to the user and a Python Flask backend for serving the online store REST API.
+
+### Running The Node.JS Frontend 🏃‍♀️☕📜
+
+The frontend can be started with the following command:
+
+```bash
+$ npm run dev  # starts Vue.js app at http://localhost:8080
+```
+
+### Running The Python Backend 🏃‍♂️🐍🔚
+
+The backend can be started with the following command:
+
+```bash
+$ export FLASK_DEBUG=1  # for development with live reload
+$ export FLASK_ENVIRONMENT=development  # this is the default
+$ PYTHONPATH='.' python3 manage.py run
+```
+
+## Background 📖
 
 This repository was created to solve the [Prezola Technical Challenge](https://github.com/prezola/technical-challenge), which requires a solution capable of adding, removing and listing (added) gifts from a list. It also required a mechanism to purchase a gift from the list and generate a report (of purchased vs non-purchased) gifts.  
 
@@ -41,12 +63,12 @@ The user must be able to:
     - Purchased gifts: each purchased gift with their details.
     - Not purchased gifts: each available gift with their details.
 
-### Implementation Notes
+### Implementation Notes 📄
 
 There are two concrete implementations for realising a gift list with the following classes from `online_store/backend/gift_list.py`:
 
 - `BasicGiftList`, a pure python implementation of a gift list **(Well Tested)**.
-- `SqlDatabaseGiftList`, an SQL ORM based implementation of a gift list for use within a flask (or Django) REST API app. In this example, the ORM models are found in `online_store/backend/models/` and the REST API is implemented in `online_store/backend/routes/gifts.py`
+- `SqlDatabaseGiftList`, an SQL ORM based implementation of a gift list for use within a flask (or Django) REST API app. In this example, the ORM models are found in `online_store/backend/models/` and the REST API is implemented in `online_store/backend/routes/gifts.py`.
 
 ### Development Setup ⚙️
 
