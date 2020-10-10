@@ -11,6 +11,7 @@ from loguru import logger
 # Flask middleware and extensions
 from flask_jwt_extended import JWTManager
 from flasgger import Swagger
+from flask_cors import CORS
 
 # SQL and ORM
 from .backend.models.database import db as store_db
@@ -136,6 +137,8 @@ def create_app(*args, **kwargs) -> Flask:
         - JWTManager (flask-jwt-extended) for JSON web token authentication.
         - Swagger (flasgger) for interactively viewing the REST API
           under `/apidocs`.
+        - CORS (flask-cors) for cross origin resource sharing of API requests
+          with external frontends, e.g. Node.js
 
     .. todo::
 
@@ -157,6 +160,10 @@ def create_app(*args, **kwargs) -> Flask:
 
     # Apply JWT authentication middleware
     jwt: JWTManager = setup_jwt(app)  # noqa
+
+    # Apply Cross-Origin-Resource-Sharing middleware
+    # to allowing sharing of API requests with Node.js frontend
+    cors: CORS = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
     # Add Swagger apidocs
     Swagger(app,
