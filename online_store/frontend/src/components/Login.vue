@@ -1,9 +1,6 @@
 <!-- Based on https://www.positronx.io/create-login-signup-ui-screens-in-vue-js-with-bootstrap/ -->
 <template>
     <div>
-        <p>
-            Login page here:
-        <p>
         <form>
             <h3>Sign In</h3>
 
@@ -17,17 +14,17 @@
                 <input type="password" class="form-control form-control-lg" />
             </div>
 
-            <button type="submit" class="btn btn-dark btn-lg btn-block">Sign In</button>
+            <button type="submit" class="btn btn-dark btn-lg btn-block text-white">Log in</button>
 
             <p class="forgot-password text-right mt-2 mb-4">
-                <router-link to="/forgot-password">Forgot password ?</router-link>
+                <router-link to="/password-reset">Forgot password</router-link>
             </p>
 
             <div class="social-icons">
                 <ul>
-                    <li><a href="#"><i class="fa fa-google"></i></a></li>
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><font-awesome-icon :icon="['fab', 'google']" /></a></li>
+                    <li><a href="#"><font-awesome-icon :icon="['fab', 'facebook']" /></a></li>
+                    <li><a href="#"><font-awesome-icon :icon="['fab', 'twitter']" /></a></li>
                 </ul>
             </div>
 

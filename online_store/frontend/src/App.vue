@@ -25,3 +25,24 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+
+    }
+  },
+  head: {
+    title: {
+      inner: 'Online Store App',
+      separator: '|',
+      complement: 'Example by Liam Deacon'
+    },
+    link: [
+      { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/assets/logo.png' },
+      { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/assets/logo.png' }
+    ]
+  }
+}
+</script>

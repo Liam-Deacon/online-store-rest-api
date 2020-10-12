@@ -71,7 +71,7 @@
   }
   
   .forgot-password a {
-    color: wheat;
+    color: darkorange;
   }
   
   .social-icons {
@@ -105,6 +105,7 @@
     font-size: 1.4em;
     margin: 0 5px;
     text-decoration: none;
+    color: darkslategrey;
   }
   .social-icons ul li a i {
     -webkit-transition: all 0.2s ease-in;
@@ -117,5 +118,5 @@
   .social-icons ul li a:focus i,
   .social-icons ul li a:active i {
     transition: none;
-    color: #222222;
+    color: gray;
   }
