@@ -15,6 +15,7 @@
         "preswag2oas": "sed -i 's|\"/terms\"|\"http://localhost:5000/terms\"|' apispec.json",
         "swag2oas": "node_modules/.bin/swagger2openapi -o openapi_spec.yml apispec.json",
         "start": "npm run backend:serve & npm run frontend:serve",
+        "build": "npm run frontend:build",
         "install": "npm run backend:install && npm run frontend:install",
         "test": "npm run frontend:test && npm run backend:test",
         "frontend:install": "cd online_store/frontend && npm install",
