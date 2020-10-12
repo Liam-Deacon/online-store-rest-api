@@ -29,8 +29,10 @@ There is a Vue.js based front-end for displaying reactive web pages to the user 
 The frontend can be started with the following command:
 
 ```bash
-$ npm run dev  # starts Vue.js app at http://localhost:8080
+$ npm run frontend:start  # starts Vue.js app at http://localhost:8080
 ```
+
+Note that the frontend can be found under `online_store/frontend`.
 
 ### Running The Python Backend 🏃‍♂️🐍🔚
 
@@ -74,6 +76,7 @@ There are two concrete implementations for realising a gift list with the follow
 
 ```bash
 $ npm install  # needed for Swagger JSON to OAS YAML spec conversion
+$ npm run frontend:install  # install packages needed for frontend app
 $ python3 -m venv venv
 $ source venv/bin/activate
 (venv) $ pip install setuptools
