@@ -9,6 +9,9 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: online_store/frontend
     strategy:
       fail-fast: false
       matrix:
@@ -22,7 +25,6 @@ jobs:
       - name: Setup environment
         run: |
           npm install
-          npm run install
 
       - name: Build
         run: |
