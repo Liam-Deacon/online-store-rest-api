@@ -32,7 +32,7 @@ The frontend can be started with the following command:
 $ npm run frontend:start  # starts Vue.js app at http://localhost:8080
 ```
 
-Note that the frontend can be found under `online_store/frontend`.
+Note that the frontend can be found under `online_store/frontend` (WIP).
 
 ### Running The Python Backend 🏃‍♂️🐍🔚
 
