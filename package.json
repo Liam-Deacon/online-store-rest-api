@@ -15,6 +15,7 @@
         "preswag2oas": "sed -i 's|\"/terms\"|\"http://localhost:5000/terms\"|' apispec.json",
         "swag2oas": "node_modules/.bin/swagger2openapi -o openapi_spec.yml apispec.json",
         "dev": "cd online_store/frontend && npm run dev",
+        "serve": "npm run dev",
         "start": "cd online_store/frontend && npm run dev",
         "unit": "cd online_store/frontend && jest --config test/unit/jest.conf.js --coverage",
         "e2e": "cd online_store/frontend && node test/e2e/runner.js",
