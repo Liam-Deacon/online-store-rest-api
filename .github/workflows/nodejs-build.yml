@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Display Node.js version
-        run: node --version"
+        run: node --version
 
       - name: Setup environment
         run: |
