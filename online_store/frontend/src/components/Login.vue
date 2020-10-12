@@ -1,6 +1,6 @@
 <!-- Based on https://www.positronx.io/create-login-signup-ui-screens-in-vue-js-with-bootstrap/ -->
 <template>
-    <div>
+    <v-container>
         <form>
             <h3>Sign In</h3>
 
@@ -29,7 +29,7 @@
             </div>
 
         </form>
-    </div>
+    </v-container>
 </template>
 
 <script>

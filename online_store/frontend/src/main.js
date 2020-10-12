@@ -14,6 +14,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/css/main.css'
 
 import vuetify from './plugins/vuetify'
+// import '@babel/polyfill'
+
+import 'vuetify/dist/vuetify.min.css'
 
 // use vue-head to inject custom data into HTML <header>
 Vue.use(VueHead)
@@ -30,6 +33,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  components: { App, vuetify },
+  components: { App },
+  vuetify,
   template: '<App/>'
 })

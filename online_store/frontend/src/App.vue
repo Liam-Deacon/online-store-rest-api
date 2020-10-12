@@ -1,5 +1,5 @@
 <template>
-  <div class="vue-template">
+<v-app>
     <!-- Navigation -->
     <nav class="navbar shadow bg-white rounded justify-content-between flex-nowrap flex-row fixed-top">
       <div class="container">
@@ -17,17 +17,20 @@
 
     <!-- Main -->
     <div class="App">
-      <div class="vertical-center">
-        <div class="inner-block">
-          <router-view />
+    <v-content transition="slide-x-transition">
+        <div class="vertical-center">
+          <div class="inner-block">
+            <router-view />
+          </div>
         </div>
-      </div>
+      </v-content>
     </div>
-  </div>
+</v-app>
 </template>
 
 <script>
 export default {
+  name: 'App',
   data () {
     return {
 
@@ -41,7 +44,8 @@ export default {
     },
     link: [
       { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/assets/logo.png' },
-      { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/assets/logo.png' }
+      { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/assets/logo.png' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' }
     ]
   }
 }

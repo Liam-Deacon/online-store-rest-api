@@ -19,11 +19,11 @@
                 <input type="password" class="form-control form-control-lg" />
             </div>
 
-            <button type="submit" class="btn btn-dark btn-lg btn-block">Sign Up</button>
+            <button type="submit" class="btn btn-dark btn-lg btn-block text-white">Register</button>
 
             <p class="forgot-password text-right">
                 Already registered
-                <router-link :to="{name: 'login'}">sign in?</router-link>
+                <router-link to="/login">sign in?</router-link>
             </p>
         </form>
     </div>
