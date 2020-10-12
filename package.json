@@ -24,12 +24,11 @@
         "frontend:test": "cd online_store/frontend && npm run unit && npm run e2e",
         "frontend:lint": "cd online_store/frontend && npm run lint",
         "frontend:build": "cd online_store/frontend && npm run build",
-        "backend:install:venv": "python -m venv && npm run backend:venv:activate && npm run backend:install:requirements",
+        "backend:install:venv": "test -f venv/bin/activate || python -m venv venv && echo 'created virtualenv under ./venv' && bash -c 'source ./venv/bin/activate && npm run backend:install:requirements'",
         "backend:install:requirements": "pip install setuptools wheel && pip install -r requirements-dev.txt -r requirements-test.txt -r requirements.txt",
-        "backend:venv:activate": "source venv/bin/activate || venv/bin/activate.bat",
         "backend:install": "npm run backend:install:venv",
         "backend:dev": "FLASK_ENV=development FLASK_DEBUG=1 npm run backend:serve",
-        "backend:serve": "npm run backend:venv:activate && PYTHONPATH='.' python manage.py run",
-        "backend:test": "npm run backend:venv:activate && PYTHONPATH='.' py.test test/"
+        "backend:serve": "bash -c 'source ./venv/bin/activate && PYTHONPATH='.' python manage.py run'",
+        "backend:test": "bash -c 'source ./venv/bin/activate && PYTHONPATH='.' py.test test/'"
     }
 }
