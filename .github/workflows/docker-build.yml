@@ -27,6 +27,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         registry: https://npm.pkg.github.com/
         package: ./online_store/frontend/package.json
+        check-version: false
 
   cd-dockerhub:
     runs-on: ubuntu-latest
