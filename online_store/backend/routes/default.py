@@ -5,7 +5,7 @@ import subprocess
 
 from flask import Blueprint, render_template_string
 
-default_router = Blueprint(__name__, "default", url_prefix="")  # pylint: disable=C0103
+default_router = Blueprint(__name__, "default", url_prefix="")  # pylint: disable=invalid-name
 
 
 @default_router.route('/')

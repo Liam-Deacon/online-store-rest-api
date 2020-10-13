@@ -217,7 +217,7 @@ class SqlDatabaseGiftList(AbstractGiftList):
         """Add item to gift list with boolean indicating success."""
         successful = True
 
-        def get(x: str, default: Optional[str] = None) -> object:  # pylint: disable=C0103
+        def get(x: str, default: Optional[str] = None) -> object:  # pylint: disable=invalid-name
             """Helper for getting data from item in duck type fashion."""
             if isinstance(item, dict):
                 val = item.get(x, default)
@@ -310,7 +310,7 @@ AbstractGiftList.register(BasicGiftList)
 AbstractGiftList.register(SqlDatabaseGiftList)
 
 
-class GiftListFactory:  # pylint: disable=R0903
+class GiftListFactory:  # pylint: disable=too-few-public-methods
     """A factory class for obtaining each user's gift list.
 
     Attributes

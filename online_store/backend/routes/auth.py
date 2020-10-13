@@ -25,8 +25,8 @@ from ..models.user import UserModel
 from ..models.database import db
 
 
-auth_router = Blueprint("auth", __name__, url_prefix="/auth")  # pylint: disable=C0103
-blacklisted_tokens = set()  # pylint: disable=C0103
+auth_router = Blueprint("auth", __name__, url_prefix="/auth")  # pylint: disable=invalid-name
+blacklisted_tokens = set()  # pylint: disable=invalid-name
 
 
 def check_request_json(

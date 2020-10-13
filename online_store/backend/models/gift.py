@@ -3,7 +3,7 @@ from sqlalchemy import Column, Integer, ForeignKey
 from .database import db
 
 
-class GiftModel(db.Model):  # pylint: disable=R0903
+class GiftModel(db.Model):  # pylint: disable=too-few-public-methods
     """Model defining a gift.
 
     Attributes
@@ -22,14 +22,14 @@ class GiftModel(db.Model):  # pylint: disable=R0903
     """
     __tablename__ = 'gifts'
 
-    id = Column(Integer, primary_key=True)  # pylint: disable=C0103
+    id = Column(Integer, primary_key=True)  # pylint: disable=invalid-name
     item_id = Column(ForeignKey('items.id'), nullable=False)
     list_id = Column(ForeignKey('gift_lists.id'), nullable=False)
     available = Column(Integer, default=1, nullable=False)
     purchased = Column(Integer, default=0, nullable=False)
 
 
-class GiftListModel(db.Model):  # pylint: disable=R0903
+class GiftListModel(db.Model):  # pylint: disable=too-few-public-methods
     """Model for gift list.
 
     Attributes
@@ -41,5 +41,5 @@ class GiftListModel(db.Model):  # pylint: disable=R0903
     """
     __tablename__ = 'gift_lists'
 
-    id = Column(Integer, primary_key=True)  # pylint: disable=C0103
+    id = Column(Integer, primary_key=True)  # pylint: disable=invalid-name
     user_id = Column(ForeignKey('users.id'), nullable=True)  # allow anon

@@ -29,7 +29,7 @@ def safe_query(func):
             logger.error(f'Error handling {request.url} due to: "{err}"')
             return Response({'error': str(err)}, mimetype='application/json',
                             status=HTTPStatus.BAD_REQUEST)
-        except Exception as err:  # pylint: disable=W0703
+        except Exception as err:  # pylint: disable=broad-except
             # Catch any error not accounted for above
             logger.error(f'Error handling {request.url} due to: "{err}"')
             return Response({'error': str(err)}, mimetype='application/json',
@@ -59,7 +59,7 @@ def query_to_json_response(obj: object) -> Response:
         data = json.dumps(obj, cls=AlchemyEncoder)
         if not data:
             code = HTTPStatus.NO_CONTENT  # No data
-    except Exception as err:  # pylint: disable=W0703
+    except Exception as err:  # pylint: disable=broad-except
         # NOTE: likely an issue with serialisation of obj with AlchemyEncoder
         logger.exception(err)
         logger.error(err)

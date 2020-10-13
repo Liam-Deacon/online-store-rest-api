@@ -16,7 +16,7 @@ from ..models.order import (
 )
 from ..utils.query import safe_query, query_to_json_response
 
-store_router = Blueprint('store', __name__, url_prefix='/store')  # pylint: disable=C0103
+store_router = Blueprint('store', __name__, url_prefix='/store')  # pylint: disable=invalid-name
 
 
 @store_router.route('/')

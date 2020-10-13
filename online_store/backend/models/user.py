@@ -51,7 +51,7 @@ class UserModel(db.Model):
     """
     __tablename__ = 'users'
 
-    id = Column(Integer, primary_key=True)  # pylint: disable=C0103
+    id = Column(Integer, primary_key=True)  # pylint: disable=invalid-name
     username = Column(String(80), unique=True, nullable=False)
     email = Column(String(120), unique=True, nullable=False)
     password = Column(String(120), nullable=False)

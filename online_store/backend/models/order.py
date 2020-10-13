@@ -46,27 +46,27 @@ class OrderStatus(Enum):
         return self.name
 
 
-class OrderModel(db.Model):  # pylint: disable=R0903
+class OrderModel(db.Model):  # pylint: disable=too-few-public-methods
     """An ORM model class for defining each order."""
     __tablename__ = "orders"
 
-    id = Column(Integer, primary_key=True)  # pylint: disable=C0103
+    id = Column(Integer, primary_key=True)  # pylint: disable=invalid-name
     user = Column(Integer, nullable=False)
     created = Column(DateTime, default=func.now())
     last_updated = Column(DateTime, default=func.now())
     status = Column(Integer, default=int(OrderStatus.CREATED))
 
 
-class OrderItemModel(db.Model):  # pylint: disable=R0903
+class OrderItemModel(db.Model):  # pylint: disable=too-few-public-methods
     """ORM model for defining each order item belonging to a given order."""
     __tablename__ = "order_items"
 
-    id = Column(Integer, primary_key=True)  # pylint: disable=C0103
+    id = Column(Integer, primary_key=True)  # pylint: disable=invalid-name
     order_id = Column(Integer, ForeignKey('orders.id'))
     item = Column(Integer, ForeignKey('items.id'))
     quantity = Column(Integer)
 
 
-class StockUnavailableError(Exception):  # pylint: disable=R0903
+class StockUnavailableError(Exception):  # pylint: disable=too-few-public-methods
     """An exception class for indicating there is no stock availability."""
-    pass  # pylint: disable=W0107
+    pass  # pylint: disable=unnecessary-pass

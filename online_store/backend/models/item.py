@@ -14,7 +14,7 @@ import sqlalchemy.exc
 from .database import db
 
 
-class ItemModel(db.Model):  # pylint: disable=R0903
+class ItemModel(db.Model):  # pylint: disable=too-few-public-methods
     """Model representing a store item.
 
     Attributes
@@ -34,7 +34,7 @@ class ItemModel(db.Model):  # pylint: disable=R0903
     """
     __tablename__ = 'items'
 
-    id = Column(Integer, primary_key=True)  # pylint: disable=C0103
+    id = Column(Integer, primary_key=True)  # pylint: disable=invalid-name
     name = Column(Text)
     brand = Column(Text)  # TODO: add brands table & change to ForeignKey
     price = Column(Float, nullable=True)
@@ -61,7 +61,7 @@ class ItemModel(db.Model):  # pylint: disable=R0903
                     db.session.rollback()
 
 
-class ItemImageModel(db.Model):  # pylint: disable=R0903
+class ItemImageModel(db.Model):  # pylint: disable=too-few-public-methods
     """Defines a table for displaying items to the user.
 
     Notes
@@ -71,7 +71,7 @@ class ItemImageModel(db.Model):  # pylint: disable=R0903
     """
     __tablename__ = 'item_images'
 
-    id = Column(ForeignKey('items.id'), primary_key=True)  # pylint: disable=C0103
+    id = Column(ForeignKey('items.id'), primary_key=True)  # pylint: disable=invalid-name
     base64_image = Column(Text, nullable=True)
 
     @classmethod

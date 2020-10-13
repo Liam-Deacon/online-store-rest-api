@@ -8,7 +8,7 @@ from ..models.user import UserModel
 
 from ..gift_list import AbstractGiftList, GiftListFactory
 
-gifts_router = Blueprint('gifts', __name__, url_prefix='/gifts')  # pylint: disable=C0103
+gifts_router = Blueprint('gifts', __name__, url_prefix='/gifts')  # pylint: disable=invalid-name
 
 
 def get_user() -> UserModel:

@@ -163,11 +163,11 @@ def create_app(*args, **kwargs) -> Flask:
     load_config(app, config or {})
 
     # Apply JWT authentication middleware
-    _jwt: JWTManager = setup_jwt(app)  # pylint: disable=unused-variable
+    jwt: JWTManager = setup_jwt(app)  # pylint: disable=unused-variable
 
     # Apply Cross-Origin-Resource-Sharing middleware
     # to allowing sharing of API requests with Node.js frontend
-    _cors: CORS = CORS(app, resources={r"/api/*": {"origins": "*"}})  # pylint: disable=unused-variable
+    cors: CORS = CORS(app, resources={r"/api/*": {"origins": "*"}})  # pylint: disable=unused-variable
 
     # Add Swagger apidocs
     Swagger(app,
