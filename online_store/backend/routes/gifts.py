@@ -139,7 +139,7 @@ def remove_gift(gift_id: int) -> Response:
     tags:
       - gifts
     """
-    gift = get_giftlist().remove_item(gift_id)  # pylint: disable=W0612; noqa
+    gift = get_giftlist().remove_item(gift_id)  # pylint: disable=unused-variable; noqa
     # TODO: check that gift belongs to user, stop if not
     return jsonify({"msg": "Gift removed from list",
                     "status": "ok", "code": HTTPStatus.OK}), HTTPStatus.OK

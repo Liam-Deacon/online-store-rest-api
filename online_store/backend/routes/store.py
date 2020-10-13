@@ -44,7 +44,7 @@ def items():
     params = dict(request.args)
     fields: Optional[List[str]] = \
         str(params.pop('fields', "")).split(',')
-    _purchased: bool = bool(params.pop('purchased', False))  # pylint: disable=W0612
+    purchased: bool = bool(params.pop('purchased', False))  # pylint: disable=unused-variable
     query = ItemModel.query \
                      .filter_by(**params) \
                      .options(load_only(*fields))  # FIXME:
@@ -252,7 +252,7 @@ def delete_order(order_id: int):
     if order.status == int(OrderStatus.PAYMENT_RECEIVED):
         order_items = OrderItemModel.query.filter_by(order_id=order_id).all()
         for item in order_items:
-            refund(item)  # pylint: disable=W0621
+            refund(item)  # pylint: disable=redefined-outer-name
         refund(order)
     elif order.status == int(OrderStatus.CREATED):
         order.status = int(OrderStatus.VOIDED)
