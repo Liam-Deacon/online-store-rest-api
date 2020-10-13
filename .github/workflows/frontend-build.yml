@@ -34,6 +34,9 @@ jobs:
         registry-url: 'https://npm.pkg.github.com'
         # Defaults to the user or organization that owns the workflow file
         scope: '@Liam-Deacon'
+    - uses: jgierer12/npm-auth-gpr@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
     - name: Install
       run: npm install
       working-directory: online_store/frontend
