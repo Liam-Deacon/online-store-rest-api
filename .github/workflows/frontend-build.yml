@@ -47,6 +47,7 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       working-directory: online_store/frontend
+      continue-on-error: true
 
   cd-github-docker:
     runs-on: ubuntu-latest
