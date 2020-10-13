@@ -4,7 +4,9 @@
   "description": "Vue.js frontend to online store",
   "author": "Liam Deacon <liam.deacon@lightbytestechnology.co.uk>",
   "private": false,
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@OWNER"
+  },
   "scripts": {
     "dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --progress --config build/webpack.dev.conf.js",
     "serve": "npm run dev",
