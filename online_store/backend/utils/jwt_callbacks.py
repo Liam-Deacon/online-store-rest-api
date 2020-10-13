@@ -37,7 +37,7 @@ def jsonified_needs_fresh_token_callback(token):  # pylint: disable=invalid-name
         "msg": "Unauthorised: Access token must be refreshed",
         "status": "error",
         "code": HTTPStatus.UNAUTHORIZED
-    })
+    }), HTTPStatus.UNAUTHORIZED
 
 
 def jsonified_revoked_token_callback(token):  # pylint: disable=invalid-name,unused-argument
