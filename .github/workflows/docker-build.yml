@@ -18,9 +18,18 @@ jobs:
     - uses: actions/checkout@v1
 
     # this is a simple install step - checks package.json is valid
-    - name: Install npm dev tools
+    - name: Install npm dev tools ⚙️
       run: |
         npm install
+    
+    - name: Authenticate 🔐
+      run: |
+        npm login --registry=https://npm.pkg.github.com/
+
+    - name: Publish 📦
+      run: |
+        npm publish
+      working-directory: online_store/frontend 
 
   cd-dockerhub:
     runs-on: ubuntu-latest
