@@ -44,3 +44,23 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       working-directory: online_store/frontend
+
+  cd-github-docker:
+    runs-on: ubuntu-latest
+    needs: ci
+
+    steps:
+        - uses: actions/checkout@v1
+        - name: Authenticate 🔐
+          run: |
+            echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u Liam-Deacon --password-stdin
+        - name: Build ⚙️
+          run: docker build -t online_store_frontend .
+          working-directory: online_store/frontend
+        - name: Tag Image 🏷️
+          run: |
+            docker tag online_store_frontend docker.pkg.github.com/liam-deacon/online-store-rest-api/online_store_frontend:latest
+        - name: Publish 📦
+          run: |
+            docker push docker.pkg.github.com/liam-deacon/online-store-rest-api/online_store_frontend:latest
+    
