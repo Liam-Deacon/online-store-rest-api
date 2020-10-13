@@ -21,22 +21,6 @@ jobs:
     - name: Install npm dev tools ⚙️
       run: |
         npm install
-  
-    # publish to GitHub Packages
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
-        registry-url: 'https://npm.pkg.github.com'
-        # Defaults to the user or organization that owns the workflow file
-        scope: '@octocat'
-    - name: Install
-      run: npm install
-      working-directory: online_store/frontend
-    - name: Publish
-      run: npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      working-directory: online_store/frontend
 
   cd-dockerhub:
     runs-on: ubuntu-latest
