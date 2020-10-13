@@ -1,11 +1,13 @@
 """Provides useful utility functions when performing & returning ORM queries"""
 import json
-import sqlalchemy.exc
 
 from functools import wraps
 from http import HTTPStatus
+
 from flask import request, Response
 from loguru import logger
+
+import sqlalchemy.exc
 
 from .model_serialisers.json_encoder import AlchemyEncoder
 
@@ -27,7 +29,8 @@ def safe_query(func):
             logger.error(f'Error handling {request.url} due to: "{err}"')
             return Response({'error': str(err)}, mimetype='application/json',
                             status=HTTPStatus.BAD_REQUEST)
-        except Exception as err:
+        except Exception as err:  # pylint: disable=W0703
+            # Catch any error not accounted for above
             logger.error(f'Error handling {request.url} due to: "{err}"')
             return Response({'error': str(err)}, mimetype='application/json',
                             status=HTTPStatus.INTERNAL_SERVER_ERROR)
@@ -56,7 +59,7 @@ def query_to_json_response(obj: object) -> Response:
         data = json.dumps(obj, cls=AlchemyEncoder)
         if not data:
             code = HTTPStatus.NO_CONTENT  # No data
-    except Exception as err:
+    except Exception as err:  # pylint: disable=W0703
         # NOTE: likely an issue with serialisation of obj with AlchemyEncoder
         logger.exception(err)
         logger.error(err)

@@ -9,12 +9,15 @@ BasicGiftList
 
 """
 import json
+
+from abc import ABCMeta, abstractmethod
+from collections import defaultdict
+from typing import Any, Union, Dict, List, Iterable, Optional
+from loguru import logger
+from sqlalchemy.orm.query import Query
+
 import sqlalchemy.exc
 
-from typing import Any, Union, Dict, List, Iterable, Optional
-from collections import defaultdict
-from sqlalchemy.orm.query import Query
-from loguru import logger
 
 from .models.item import ItemModel
 from .models.database import db
@@ -22,10 +25,8 @@ from .models.user import UserModel
 from .models.gift import GiftListModel, GiftModel
 from .utils.model_serialisers.json_encoder import AlchemyEncoder
 
-from abc import ABC, abstractmethod
 
-
-class AbstractGiftList(ABC):
+class AbstractGiftList(metaclass=ABCMeta):
     """Defines interface for implementations of gift lists to adhere to."""
 
     @abstractmethod
@@ -127,7 +128,7 @@ class BasicGiftList(AbstractGiftList):
         self.gift_list.remove(item)
 
     def create_report(self):
-        """Print report of purchased and available gift items in list."""  
+        """Print report of purchased and available gift items in list."""
         available = []
         purchased = []
         for item in self.get_list():
@@ -216,12 +217,13 @@ class SqlDatabaseGiftList(AbstractGiftList):
         """Add item to gift list with boolean indicating success."""
         successful = True
 
-        def get(x: str, default: Optional[str] = None) -> object:
+        def get(x: str, default: Optional[str] = None) -> object:  # pylint: disable=C0103
             """Helper for getting data from item in duck type fashion."""
             if isinstance(item, dict):
-                return item.get(x, default)
+                val = item.get(x, default)
             else:
-                return getattr(item, x, default)
+                val = getattr(item, x, default)
+            return val
 
         try:
             item_id = get('item_id') or int(item)
@@ -271,7 +273,7 @@ class SqlDatabaseGiftList(AbstractGiftList):
             db.session.commit()
 
     def create_report(self) -> dict:
-        """Create a report of purchased and available gift items in JSON 
+        """Create a report of purchased and available gift items in JSON
         compatible representation.
         """
         available = []
@@ -303,7 +305,12 @@ class SqlDatabaseGiftList(AbstractGiftList):
         return json.loads(json.dumps(item, cls=AlchemyEncoder))
 
 
-class GiftListFactory:
+# register gift list implementation classes
+AbstractGiftList.register(BasicGiftList)
+AbstractGiftList.register(SqlDatabaseGiftList)
+
+
+class GiftListFactory:  # pylint: disable=R0903
     """A factory class for obtaining each user's gift list.
 
     Attributes
@@ -339,7 +346,7 @@ class GiftListFactory:
         Returns
         -------
         AbstractGiftList
-            An instance of `gift_list_cls` for the given `user_name_or_id`. 
+            An instance of `gift_list_cls` for the given `user_name_or_id`.
         """
         if isinstance(gift_list_cls, str):
             gift_list_cls = cls.CLASSES[gift_list_cls]

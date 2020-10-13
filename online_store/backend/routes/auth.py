@@ -25,12 +25,12 @@ from ..models.user import UserModel
 from ..models.database import db
 
 
-auth_router = Blueprint("auth", __name__, url_prefix="/auth")
-blacklisted_tokens = set()
+auth_router = Blueprint("auth", __name__, url_prefix="/auth")  # pylint: disable=C0103
+blacklisted_tokens = set()  # pylint: disable=C0103
 
 
 def check_request_json(
-        needed_keys: Iterable[str] = ['username', 'password'],
+        needed_keys: Iterable[str] = ('username', 'password'),
         accept_empty: bool = False) -> tuple:
     """Checks JSON in HTTP request and raises ValueError if needed_keys
     are missing.
@@ -56,8 +56,8 @@ def check_request_json(
     if not request.is_json:
         raise ValueError("Missing JSON in request")
 
-    def raise_error_on_json_load_failed(e):
-        raise ValueError(f'{e.__class__.__name__}: {e}')
+    def raise_error_on_json_load_failed(ex):
+        raise ValueError(f'{ex.__class__.__name__}: {ex}')
 
     request.on_json_loading_failed = raise_error_on_json_load_failed
 
@@ -100,20 +100,23 @@ def login():
         return jsonify({'msg': str(err), 'status': 'error', 'code': 400}), 400
 
     user = UserModel.query.filter_by(username=username).first()
+    payload = None
     if not user:
-        return jsonify({'msg': 'Invalid username',
-                        'status': 'error', 'code': 401}), 401
+        payload = jsonify({'msg': 'Invalid username',
+                           'status': 'error', 'code': 401}), 401
     elif not UserModel.verify_hash(password, user.password):
-        return jsonify({'msg': 'Invalid password',
-                        'status': 'error', 'code': 401}), 401
+        payload = jsonify({'msg': 'Invalid password',
+                           'status': 'error', 'code': 401}), 401
 
-    # Identity can be any data that is json serialisable
-    access_token = create_access_token(identity=username, fresh=True)
-    refresh_token = create_refresh_token(identity=username)
-    return jsonify(access_token=access_token,
-                   refresh_token=refresh_token,
-                   msg='Successfully logged in',
-                   status='ok', code=200), 200
+    if not payload:
+        # Identity can be any data that is json serialisable
+        access_token = create_access_token(identity=username, fresh=True)
+        refresh_token = create_refresh_token(identity=username)
+        payload = jsonify(access_token=access_token,
+                          refresh_token=refresh_token,
+                          msg='Successfully logged in',
+                          status='ok', code=200), 200
+    return payload
 
 
 @auth_router.route('/refresh', methods=['POST'])

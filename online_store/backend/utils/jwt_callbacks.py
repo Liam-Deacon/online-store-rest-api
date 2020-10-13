@@ -3,16 +3,17 @@ from http import HTTPStatus
 from flask import jsonify
 
 
-def jsonified_claims_verification_callback():
+def jsonified_claims_verification_callback():  # pylint: disable=C0103
+    """Called when user claims is verified."""
     raise NotImplementedError
 
 
-def jsonified_claims_verification_failed_callback(token):
+def jsonified_claims_verification_failed_callback(token):  # pylint: disable=C0103,W0613
     """Called when the user claims verification callback returns False"""
     raise NotImplementedError
 
 
-def jsonified_expired_token_callback(token):
+def jsonified_expired_token_callback(token):  # pylint: disable=C0103,W0613
     """Called when an expired token accesses a protected endpoint"""
     return jsonify({
         "msg": "Unauthorised: Access token has expired",
@@ -21,7 +22,7 @@ def jsonified_expired_token_callback(token):
     }), HTTPStatus.UNAUTHORIZED
 
 
-def jsonified_invalid_token_callback(token):
+def jsonified_invalid_token_callback(token):  # pylint: disable=C0103,W0613
     """Called when an invalid token accesses a protected endpoint"""
     return jsonify({
         "msg": "Unauthorised: Invalid access token",
@@ -30,7 +31,7 @@ def jsonified_invalid_token_callback(token):
     }), HTTPStatus.UNAUTHORIZED
 
 
-def jsonified_needs_fresh_token_callback(token):
+def jsonified_needs_fresh_token_callback(token):  # pylint: disable=C0103,W0613
     """Called when a non-fresh token accesses a fresh_jwt_required() endpoint"""
     return jsonify({
         "msg": "Unauthorised: Access token must be refreshed",
@@ -39,7 +40,7 @@ def jsonified_needs_fresh_token_callback(token):
     })
 
 
-def jsonified_revoked_token_callback(token):
+def jsonified_revoked_token_callback(token):  # pylint: disable=C0103,W0613
     """Called when a revoked token accesses a protected endpoint."""
     return jsonify({
         "msg": "Unauthorised: Access token revoked",
@@ -48,7 +49,7 @@ def jsonified_revoked_token_callback(token):
     }), HTTPStatus.UNAUTHORIZED
 
 
-def jsonified_token_in_blacklist_callback(token):
+def jsonified_token_in_blacklist_callback(token):  # pylint: disable=C0103,W0613
     """Called to check if a token has been revoked."""
     return jsonify({
         "msg": "Unauthorised: Access token has been blacklisted",
@@ -57,7 +58,7 @@ def jsonified_token_in_blacklist_callback(token):
     }), HTTPStatus.UNAUTHORIZED
 
 
-def jsonified_unauthorized_callback(token):
+def jsonified_unauthorized_callback(token):  # pylint: disable=C0103,W0613
     """Called when a request with no JWT accesses a protected endpoint."""
     return jsonify({
         "msg": "Unauthorised: No access token in request header",
@@ -66,5 +67,6 @@ def jsonified_unauthorized_callback(token):
     }), HTTPStatus.UNAUTHORIZED
 
 
-def jsonified_user_loader_error_callback():
+def jsonified_user_loader_error_callback():  # pylint: disable=C0103
+    """Called when user loader error occurs."""
     raise NotImplementedError

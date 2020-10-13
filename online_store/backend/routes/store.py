@@ -1,11 +1,12 @@
+"""Module for providing store API routes."""
 from typing import List, Optional, Union
 from http import HTTPStatus
 
 from sqlalchemy.orm import load_only
+import sqlalchemy.exc
+
 from flask import Blueprint, request, Response
 from loguru import logger
-
-import sqlalchemy.exc
 
 from ..models.database import db
 from ..models.item import ItemModel
@@ -15,11 +16,12 @@ from ..models.order import (
 )
 from ..utils.query import safe_query, query_to_json_response
 
-store_router = Blueprint('store', __name__, url_prefix='/store')
+store_router = Blueprint('store', __name__, url_prefix='/store')  # pylint: disable=C0103
 
 
 @store_router.route('/')
 def store():
+    """Return the default route for the store."""
     return Response(None, mimetype='application/json',
                     status=HTTPStatus.NOT_IMPLEMENTED)
 
@@ -42,7 +44,7 @@ def items():
     params = dict(request.args)
     fields: Optional[List[str]] = \
         str(params.pop('fields', "")).split(',')
-    purchased: bool = bool(params.pop('purchased', False))  # noqa
+    _purchased: bool = bool(params.pop('purchased', False))  # pylint: disable=W0612
     query = ItemModel.query \
                      .filter_by(**params) \
                      .options(load_only(*fields))  # FIXME:
@@ -103,7 +105,6 @@ def item(item_id: int):
 
 def _create_order(order_data: dict) -> OrderStatus:
     status = OrderStatus.INVALID
-    items = []
 
     # attempt to create a new order
     try:
@@ -119,8 +120,8 @@ def _create_order(order_data: dict) -> OrderStatus:
         db.session.rollback()
         return status
 
+    items = order_data.get('items', [])
     try:
-        items = order_data.get('items', [])
         for item_data in items:
             item = ItemModel.query \
                             .filter_by(id=item_data.get('item_id', None)) \
@@ -220,6 +221,7 @@ def get_order(order_id: int):
 
 
 def refund(obj: Union[OrderModel, OrderItemModel]):
+    """Refund an order."""
     raise NotImplementedError("TODO")
 
 
@@ -250,7 +252,7 @@ def delete_order(order_id: int):
     if order.status == int(OrderStatus.PAYMENT_RECEIVED):
         order_items = OrderItemModel.query.filter_by(order_id=order_id).all()
         for item in order_items:
-            refund(item)
+            refund(item)  # pylint: disable=W0621
         refund(order)
     elif order.status == int(OrderStatus.CREATED):
         order.status = int(OrderStatus.VOIDED)

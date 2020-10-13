@@ -4,7 +4,7 @@ import os
 from functools import partial
 from collections import defaultdict
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any, Mapping, Optional
 from flask import Flask
 from loguru import logger
 
@@ -32,14 +32,17 @@ __description__ = "Wedding Gift List"
 
 
 def get_app_config(key: str, default: Any = None,
-                   config: dict = {}, app_config: dict = {}):
+                   config: Optional[dict] = None,
+                   app_config: Optional[dict] = None):
     """Get config from os.environ, falling back to config, then app_config."""
+    config = config or {}
+    app_config = app_config or {}
     key = key.upper()
     value = os.environ.get(key, config.get(key, app_config.get(key, default)))
     return value
 
 
-def load_config(app: Flask, config: Mapping[str, Any] = {}):
+def load_config(app: Flask, config: Optional[Mapping[str, Any]] = None):
     """Loads the app config.
 
     The loading order is:
@@ -60,6 +63,7 @@ def load_config(app: Flask, config: Mapping[str, Any] = {}):
         A custom config (useful for testing purposes).
 
     """
+    config = config or {}
     app.config.from_mapping(**config)
     logger.debug(f'Loaded Flask config from {config}')
     # logger.debug(f'User environment is: {os.environ}')
@@ -159,11 +163,11 @@ def create_app(*args, **kwargs) -> Flask:
     load_config(app, config or {})
 
     # Apply JWT authentication middleware
-    jwt: JWTManager = setup_jwt(app)  # noqa
+    _jwt: JWTManager = setup_jwt(app)  # pylint: disable=unused-variable
 
     # Apply Cross-Origin-Resource-Sharing middleware
     # to allowing sharing of API requests with Node.js frontend
-    cors: CORS = CORS(app, resources={r"/api/*": {"origins": "*"}})
+    _cors: CORS = CORS(app, resources={r"/api/*": {"origins": "*"}})  # pylint: disable=unused-variable
 
     # Add Swagger apidocs
     Swagger(app,
@@ -206,7 +210,7 @@ def create_app(*args, **kwargs) -> Flask:
         store_db.create_all()
 
         # try to load products if table is empty
-        if len(ItemModel.query.all()) == 0:
+        if not ItemModel.query.all():
             product_json_path = Path(__file__).parent.parent / 'products.json'
             logger.info(f'Loading JSON data from {product_json_path}')
             try:
