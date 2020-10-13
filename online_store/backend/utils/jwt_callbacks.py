@@ -8,12 +8,12 @@ def jsonified_claims_verification_callback():  # pylint: disable=invalid-name
     raise NotImplementedError
 
 
-def jsonified_claims_verification_failed_callback(token):  # pylint: disable=invalid-name,W0613
+def jsonified_claims_verification_failed_callback(token):  # pylint: disable=invalid-name,unused-argument
     """Called when the user claims verification callback returns False"""
     raise NotImplementedError
 
 
-def jsonified_expired_token_callback(token):  # pylint: disable=invalid-name,W0613
+def jsonified_expired_token_callback(token):  # pylint: disable=invalid-name,unused-argument
     """Called when an expired token accesses a protected endpoint"""
     return jsonify({
         "msg": "Unauthorised: Access token has expired",
@@ -22,7 +22,7 @@ def jsonified_expired_token_callback(token):  # pylint: disable=invalid-name,W06
     }), HTTPStatus.UNAUTHORIZED
 
 
-def jsonified_invalid_token_callback(token):  # pylint: disable=invalid-name,W0613
+def jsonified_invalid_token_callback(token):  # pylint: disable=invalid-name,unused-argument
     """Called when an invalid token accesses a protected endpoint"""
     return jsonify({
         "msg": "Unauthorised: Invalid access token",
@@ -31,7 +31,7 @@ def jsonified_invalid_token_callback(token):  # pylint: disable=invalid-name,W06
     }), HTTPStatus.UNAUTHORIZED
 
 
-def jsonified_needs_fresh_token_callback(token):  # pylint: disable=invalid-name,W0613
+def jsonified_needs_fresh_token_callback(token):  # pylint: disable=invalid-name,unused-argument
     """Called when a non-fresh token accesses a fresh_jwt_required() endpoint"""
     return jsonify({
         "msg": "Unauthorised: Access token must be refreshed",
@@ -40,7 +40,7 @@ def jsonified_needs_fresh_token_callback(token):  # pylint: disable=invalid-name
     })
 
 
-def jsonified_revoked_token_callback(token):  # pylint: disable=invalid-name,W0613
+def jsonified_revoked_token_callback(token):  # pylint: disable=invalid-name,unused-argument
     """Called when a revoked token accesses a protected endpoint."""
     return jsonify({
         "msg": "Unauthorised: Access token revoked",
@@ -49,7 +49,7 @@ def jsonified_revoked_token_callback(token):  # pylint: disable=invalid-name,W06
     }), HTTPStatus.UNAUTHORIZED
 
 
-def jsonified_token_in_blacklist_callback(token):  # pylint: disable=invalid-name,W0613
+def jsonified_token_in_blacklist_callback(token):  # pylint: disable=invalid-name,unused-argument
     """Called to check if a token has been revoked."""
     return jsonify({
         "msg": "Unauthorised: Access token has been blacklisted",
@@ -58,7 +58,7 @@ def jsonified_token_in_blacklist_callback(token):  # pylint: disable=invalid-nam
     }), HTTPStatus.UNAUTHORIZED
 
 
-def jsonified_unauthorized_callback(token):  # pylint: disable=invalid-name,W0613
+def jsonified_unauthorized_callback(token):  # pylint: disable=invalid-name,unused-argument
     """Called when a request with no JWT accesses a protected endpoint."""
     return jsonify({
         "msg": "Unauthorised: No access token in request header",
