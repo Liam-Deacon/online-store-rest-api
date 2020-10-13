@@ -18,9 +18,9 @@ def get_db() -> sqlite3.Connection:
     return g.db
 
 
-def close_db(e=None):
+def close_db(e=None):  # pylint: disable=invalid-name,unused-argument
     """Close the database connection to the app."""
-    db: sqlite3.Connection = g.pop('db', None)
+    _db: sqlite3.Connection = g.pop('db', None)
 
-    if db is not None:
-        db.close()
+    if _db is not None:
+        _db.close()

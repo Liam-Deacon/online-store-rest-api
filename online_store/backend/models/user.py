@@ -2,6 +2,7 @@
 from enum import Enum, auto
 from passlib.hash import pbkdf2_sha256 as sha256
 
+from sqlalchemy import Column, Integer, String
 from .database import db
 
 
@@ -13,7 +14,7 @@ class UserRole(Enum):
     USER: int
         Indicates the user is a normal user.
     ADMIN: int
-        Indicates the user can perform administrative actions.  
+        Indicates the user can perform administrative actions.
     """
     USER: int = auto()
     ADMIN: int = auto()
@@ -50,13 +51,13 @@ class UserModel(db.Model):
     """
     __tablename__ = 'users'
 
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(120), nullable=False)
-    role = db.Column(db.Integer, default=int(UserRole.USER))
-    phone_number = db.Column(db.String(16))
-    address = db.Column(db.String(2000))
+    id = Column(Integer, primary_key=True)  # pylint: disable=invalid-name
+    username = Column(String(80), unique=True, nullable=False)
+    email = Column(String(120), unique=True, nullable=False)
+    password = Column(String(120), nullable=False)
+    role = Column(Integer, default=int(UserRole.USER))
+    phone_number = Column(String(16))
+    address = Column(String(2000))
 
     def __int__(self) -> int:
         return self.id
@@ -73,6 +74,6 @@ class UserModel(db.Model):
         return sha256.hash(password)
 
     @staticmethod
-    def verify_hash(password: str, hash: str) -> str:
+    def verify_hash(password: str, hashed_password: str) -> str:
         """Verifies `password` against stored password `hash`."""
-        return sha256.verify(password, hash)
+        return sha256.verify(password, hashed_password)

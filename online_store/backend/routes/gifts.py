@@ -1,3 +1,4 @@
+"""Defines the API routes for user gift lists."""
 from http import HTTPStatus
 from flask import Blueprint, jsonify, request, Response
 from flask_jwt_extended import get_jwt_identity, jwt_required
@@ -5,9 +6,9 @@ from flask_jwt_extended import get_jwt_identity, jwt_required
 from ..utils.query import query_to_json_response, safe_query
 from ..models.user import UserModel
 
-from ..gift_list import GiftListFactory
+from ..gift_list import AbstractGiftList, GiftListFactory
 
-gifts_router = Blueprint('gifts', __name__, url_prefix='/gifts')
+gifts_router = Blueprint('gifts', __name__, url_prefix='/gifts')  # pylint: disable=invalid-name
 
 
 def get_user() -> UserModel:
@@ -15,7 +16,7 @@ def get_user() -> UserModel:
     return UserModel.query.filter_by(username=get_jwt_identity()).first()
 
 
-def get_giftlist():
+def get_giftlist() -> AbstractGiftList:
     """Simple convenience function for getting GiftList for current user."""
     return GiftListFactory(get_user(), gift_list_cls='sql')
 
@@ -35,7 +36,8 @@ def gift_report() -> Response:
     tags:
       - gifts
     """
-    return jsonify(get_giftlist().create_report()), HTTPStatus.OK
+    gift_list: AbstractGiftList = get_giftlist()
+    return jsonify(gift_list.create_report()), HTTPStatus.OK
 
 
 @gifts_router.route('/list/add', methods=['POST'])
@@ -137,7 +139,7 @@ def remove_gift(gift_id: int) -> Response:
     tags:
       - gifts
     """
-    gift = get_giftlist().remove_item(gift_id)  # noqa
+    gift = get_giftlist().remove_item(gift_id)  # pylint: disable=unused-variable; noqa
     # TODO: check that gift belongs to user, stop if not
     return jsonify({"msg": "Gift removed from list",
                     "status": "ok", "code": HTTPStatus.OK}), HTTPStatus.OK

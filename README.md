@@ -1,6 +1,7 @@
 # Online Store Example
 
-
+<!--lint disable list-item-indent -->
+<!--lint disable list-item-spacing -->
 <!--lint disable no-inline-padding-->
 [![ ](https://img.shields.io/static/v1?label=demo&message=REST%20API&color=darkorchid&logo=Heroku&logoColor=white)](https://online-store-flask-rest-api.herokuapp.com/apidocs/)
 [![ ](https://img.shields.io/static/v1?label=docs&message=GitHub%20Pages&color=orange&logo=Read%20The%20Docs&logoColor=white)](https://liam-deacon.github.io/online-store-rest-api/)
@@ -20,15 +21,45 @@
 
 <!--lint enable no-inline-padding-->
 
-## Background:
+## Components 📲🧩
 
-This repository was created to solve the [Prezola Technical Challenge](https://github.com/prezola/technical-challenge), which requires a solution capable of adding, removing and listing (added) gifts from a list. It also required a mechanism to purchase a gift from the list and generate a report (of purchased vs non-purchased) gifts.  
+There is a Vue.js based front-end for displaying reactive web pages to the user
+and a Python Flask backend for serving the online store REST API.
+
+### Running The Node.JS Frontend 🏃‍♀️☕📜
+
+The frontend can be started with the following command:
+
+```bash
+$ npm run frontend:start  # starts Vue.js app at http://localhost:8080
+```
+
+Note that the frontend can be found under `online_store/frontend` (WIP).
+
+### Running The Python Backend 🏃‍♂️🐍🔚
+
+The backend can be started with the following command:
+
+```bash
+$ export FLASK_DEBUG=1  # for development with live reload
+$ export FLASK_ENVIRONMENT=development  # this is the default
+$ PYTHONPATH='.' python3 manage.py run
+```
+
+## Background 📖
+
+This repository was created to solve the 
+[Prezola Technical Challenge](https://github.com/prezola/technical-challenge),
+which requires a solution capable of adding, removing and listing (added) gifts
+from a list. It also required a mechanism to purchase a gift from the list and
+generate a report (of purchased vs non-purchased) gifts.  
 
 This code project takes that concept and extends it to a generic (gift) store.
 
-## The challenge:
+## The challenge
 
-_"Write a program to the best of your knowledge which will allow the user to manage a single list of wedding gifts."_
+_"Write a program to the best of your knowledge which will allow the user to_
+_manage a single list of wedding gifts."_
 
 The user must be able to:
 
@@ -36,22 +67,27 @@ The user must be able to:
 - Remove a gift from the list
 - List the already added gifts of the list 
 - Purchase a gift from the list
-- Generate a report from the list which will print out the gifts and their statuses.
+- Generate a report from the list which will print out gifts & their statuses.
   - The report must include two sections:
     - Purchased gifts: each purchased gift with their details.
     - Not purchased gifts: each available gift with their details.
 
-### Implementation Notes
+### Implementation Notes 📄
 
-There are two concrete implementations for realising a gift list with the following classes from `online_store/backend/gift_list.py`:
+There are two concrete implementations for realising a gift list with
+the following classes from `online_store/backend/gift_list.py`:
 
 - `BasicGiftList`, a pure python implementation of a gift list **(Well Tested)**.
-- `SqlDatabaseGiftList`, an SQL ORM based implementation of a gift list for use within a flask (or Django) REST API app. In this example, the ORM models are found in `online_store/backend/models/` and the REST API is implemented in `online_store/backend/routes/gifts.py`
+- `SqlDatabaseGiftList`, an SQL ORM based implementation of a gift list for
+   use within a flask (or Django) REST API app. In this example, the ORM
+   models are found in `online_store/backend/models/` and the REST API is
+   implemented in `online_store/backend/routes/gifts.py`.
 
 ### Development Setup ⚙️
 
 ```bash
 $ npm install  # needed for Swagger JSON to OAS YAML spec conversion
+$ npm run frontend:install  # install packages needed for frontend app
 $ python3 -m venv venv
 $ source venv/bin/activate
 (venv) $ pip install setuptools
@@ -61,7 +97,8 @@ $ source venv/bin/activate
 
 ### Testing 🧪
 
-`setup.cfg` has configured `pytest` to collect coverage information and can be run as follows:
+`setup.cfg` has configured `pytest` to collect coverage information
+and can be run as follows:
 
 ```bash
 (venv) $ PYTHONPATH='.' py.test 
@@ -113,7 +150,8 @@ $ source venv/bin/activate
 (venv) $ FLASK_DEBUG=1 flask run
 ```
 
-This will start a flask development server running on http://localhost:5000 and provides a Swagger-UI at http://localhost:5000/apidocs/. 
+This will start a flask development server running on http://localhost:5000 and
+provides a Swagger-UI at http://localhost:5000/apidocs/. 
 
 #### Examples
 
@@ -224,7 +262,7 @@ $ make openapi_spec.yml
 $ make html  # or another end documentation format e.g. epub
 ```
 
-A live deployment to GitHub Pages can be found at https://liam-deacon.github.io/online-store-rest-api/
+A live deployment to GitHub Pages can be found at [https://liam-deacon.github.io/online-store-rest-api/]()
 
 ## TODO 📝
 
@@ -236,14 +274,15 @@ A live deployment to GitHub Pages can be found at https://liam-deacon.github.io/
 - [x] shields.io support for README badges
 - [ ] Add linting to CI
 - [x] Build and deploy docker image(s) to dockerhub via CI/CD
-- [x] Deploy flask app to Heroku for [demo](https://online-store-flask-rest-api.herokuapp.com/) purposes (follow link)
+- [x] Deploy flask app to Heroku for
+  [demo](https://online-store-flask-rest-api.herokuapp.com/) purposes (follow link)
 
 ## Future Improvements 🔮
 
 Given more time, the following improvements could be made:
 
-- [ ] Write frontend in React (or maybe Vue.js)
-- [ ] Create `docker-compose.yml` multi-container Docker compose script for orchestrating frontend, backend and database (e.g. React/NPM-based, Flask, Postgres).
-- [ ] Implement missing features in the code (i.e. wherever `NotImplementError` is raised)
-- [ ] Code tidy and refactor
-- [ ] Increase overall code coverage (aiming for nirvana at 100%)
+-   [ ] Write frontend in React (or maybe Vue.js)
+-   [ ] Create `docker-compose.yml` multi-container Docker compose script for orchestrating frontend, backend and database (e.g. React/NPM-based, Flask, Postgres).
+-   [ ] Implement missing features in the code (i.e. wherever `NotImplementError` is raised)
+-   [ ] Code tidy and refactor
+-   [ ] Increase overall code coverage (aiming for nirvana at 100%)

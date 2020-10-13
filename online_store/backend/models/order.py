@@ -1,7 +1,7 @@
+"""This module defines the ORM models for store orders."""
 from enum import Enum, auto
-from http.client import PAYMENT_REQUIRED
 from sqlalchemy.sql import func
-
+from sqlalchemy import Column, Integer, DateTime, ForeignKey
 from .database import db
 
 
@@ -46,24 +46,27 @@ class OrderStatus(Enum):
         return self.name
 
 
-class OrderModel(db.Model):
+class OrderModel(db.Model):  # pylint: disable=too-few-public-methods
+    """An ORM model class for defining each order."""
     __tablename__ = "orders"
 
-    id = db.Column(db.Integer, primary_key=True)
-    user = db.Column(db.Integer, nullable=False)
-    created = db.Column(db.DateTime, default=func.now())
-    last_updated = db.Column(db.DateTime, default=func.now())
-    status = db.Column(db.Integer, default=int(OrderStatus.CREATED))
+    id = Column(Integer, primary_key=True)  # pylint: disable=invalid-name
+    user = Column(Integer, nullable=False)
+    created = Column(DateTime, default=func.now())
+    last_updated = Column(DateTime, default=func.now())
+    status = Column(Integer, default=int(OrderStatus.CREATED))
 
 
-class OrderItemModel(db.Model):
+class OrderItemModel(db.Model):  # pylint: disable=too-few-public-methods
+    """ORM model for defining each order item belonging to a given order."""
     __tablename__ = "order_items"
 
-    id = db.Column(db.Integer, primary_key=True)
-    order_id = db.Column(db.Integer, db.ForeignKey('orders.id'))
-    item = db.Column(db.Integer, db.ForeignKey('items.id'))
-    quantity = db.Column(db.Integer)
+    id = Column(Integer, primary_key=True)  # pylint: disable=invalid-name
+    order_id = Column(Integer, ForeignKey('orders.id'))
+    item = Column(Integer, ForeignKey('items.id'))
+    quantity = Column(Integer)
 
 
-class StockUnavailableError(Exception):
-    pass
+class StockUnavailableError(Exception):  # pylint: disable=too-few-public-methods
+    """An exception class for indicating there is no stock availability."""
+    pass  # pylint: disable=unnecessary-pass

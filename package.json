@@ -8,11 +8,42 @@
         "url": "https://github.com/liam-deacon/online-store-example.git"
     },
     "devDependencies": {
+        "remark-cli": "^8.0.1",
+        "remark-frontmatter": "^3.0.0",
+        "remark-lint": "^8.0.0",
+        "remark-lint-heading-whitespace": "^1.0.0",
+        "remark-lint-no-dead-urls": "^1.1.0",
+        "remark-lint-write-good": "^1.2.0",
+        "remark-preset-lint-consistent": "^4.0.0",
+        "remark-preset-lint-markdown-style-guide": "^4.0.0",
+        "remark-preset-lint-recommended": "^5.0.0",
+        "remark-validate-links": "^10.0.2",
         "swagger2openapi": "^7.0.2"
     },
     "scripts": {
         "apispec": "wget -O apispec.json http://localhost:5000/apispec_1.json",
         "preswag2oas": "sed -i 's|\"/terms\"|\"http://localhost:5000/terms\"|' apispec.json",
-        "swag2oas": "node_modules/.bin/swagger2openapi -o openapi_spec.yml apispec.json"
+        "swag2oas": "node_modules/.bin/swagger2openapi -o openapi_spec.yml apispec.json",
+        "start": "npm run backend:serve & npm run frontend:serve",
+        "build": "npm run frontend:build",
+        "install": "npm run backend:install && npm run frontend:install",
+        "test": "npm run frontend:test && npm run backend:test",
+        "lint": "npm run lint:markdown && npm run frontend:lint && npm run backend:lint",
+        "lint:markdown": "node_modules/.bin/remark . -u remark-validate-links -u remark-preset-lint-recommended -u remark-preset-lint-consistent -u remark-preset-lint-markdown-style-guide -u remark-lint-no-dead-urls -u remark-lint-heading-whitespace -u remark-frontmatter",
+        "frontend:install": "cd online_store/frontend && npm install",
+        "frontend:dev": "cd online_store/frontend && npm run dev",
+        "frontend:serve": "npm run frontend:dev",
+        "frontend:unit": "cd online_store/frontend && npm run unit",
+        "frontend:e2e": "cd online_store/frontend && npm run e2e",
+        "frontend:test": "cd online_store/frontend && npm run unit && npm run e2e",
+        "frontend:lint": "cd online_store/frontend && npm run lint",
+        "frontend:build": "cd online_store/frontend && npm run build",
+        "backend:install:venv": "test -f venv/bin/activate || python -m venv venv && echo 'created virtualenv under ./venv' && bash -c 'source ./venv/bin/activate && npm run backend:install:requirements'",
+        "backend:install:requirements": "pip install setuptools wheel && pip install -r requirements-dev.txt -r requirements-test.txt -r requirements.txt",
+        "backend:install": "npm run backend:install:venv",
+        "backend:lint": "python -m pylint --rcfile=setup.cfg online_store/",
+        "backend:dev": "FLASK_ENV=development FLASK_DEBUG=1 npm run backend:serve",
+        "backend:serve": "bash -c 'source ./venv/bin/activate && PYTHONPATH='.' python manage.py run'",
+        "backend:test": "bash -c 'source ./venv/bin/activate && PYTHONPATH='.' py.test test/'"
     }
 }

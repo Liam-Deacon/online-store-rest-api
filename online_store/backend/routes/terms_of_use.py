@@ -1,6 +1,7 @@
+"""Module for returning a simple terms of use webpage."""
 from flask import Blueprint
 
-terms_of_user_router = Blueprint("terms-of-use", __name__, url_prefix='/api')
+terms_of_user_router = Blueprint("terms-of-use", __name__, url_prefix='/api')  # pylint: disable=invalid-name
 
 
 @terms_of_user_router.route("/terms")

@@ -2,6 +2,7 @@ dist/
 build/
 node_modules/
 docs/build/
+venv/
 
 .coverage*
 coverage.xml

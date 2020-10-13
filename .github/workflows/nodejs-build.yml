@@ -1,0 +1,31 @@
+name: NodeJS CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: online_store/frontend
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Display Node.js version
+        run: node --version
+
+      - name: Setup environment
+        run: |
+          npm install
+
+      - name: Build
+        run: |
+          npm run build

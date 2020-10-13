@@ -12,6 +12,7 @@ WORKDIR /flask_app
 COPY online_store ./online_store
 COPY manage.py .
 COPY products.json .
+COPY README.md .
 
 # run flask app
 ENV PORT=8000
