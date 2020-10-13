@@ -22,14 +22,11 @@ jobs:
       run: |
         npm install
     
-    - name: Authenticate 🔐
-      run: |
-        npm login --registry=https://npm.pkg.github.com/
-
-    - name: Publish 📦
-      run: |
-        npm publish
-      working-directory: online_store/frontend 
+    - uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        registry: https://npm.pkg.github.com/
+        package: ./online_store/frontend/package.json
 
   cd-dockerhub:
     runs-on: ubuntu-latest
@@ -59,7 +56,7 @@ jobs:
       # Step 1: Authenticate
       - name: Authenticate 🔐
         run: |
-          echo "${{ secrets.PAT }}" | docker login docker.pkg.github.com -u Liam-Deacon --password-stdin#
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u Liam-Deacon --password-stdin
       - name: Tag Image 🏷️
         run: |
           docker tag online_store_backend docker.pkg.github.com/liam-deacon/online-store-rest-api/online_store_backend:latest
