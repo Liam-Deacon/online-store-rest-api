@@ -33,12 +33,14 @@ jobs:
         node-version: '12.x'
         registry-url: 'https://npm.pkg.github.com'
         # Defaults to the user or organization that owns the workflow file
-        scope: '@octocat'
+        scope: '@Liam-Deacon'
     - name: Install
       run: npm install
       working-directory: online_store/frontend
     - name: Publish
-      run: npm publish
+      run: |
+        echo @Liam-Deacon:registry=https://npm.pkg.github.com/ >> .npmrc
+        npm publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       working-directory: online_store/frontend
