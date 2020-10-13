@@ -47,10 +47,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      # Step 1: Authenticate
       - name: Authenticate 🔐
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u Liam-Deacon --password-stdin
+      - name: Build ⚙️
+        run: docker build -t online_store_backend .
       - name: Tag Image 🏷️
         run: |
           docker tag online_store_backend docker.pkg.github.com/liam-deacon/online-store-rest-api/online_store_backend:latest
