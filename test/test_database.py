@@ -10,6 +10,11 @@ def test_get_db(app):
         assert hasattr(db, 'row_factory')
         assert db.row_factory == sqlite3.Row
         assert isinstance(db, sqlite3.Connection)
+        g.pop('db', None)
+        db = get_db()
+        assert hasattr(db, 'row_factory')
+        assert db.row_factory == sqlite3.Row
+        assert isinstance(db, sqlite3.Connection)
 
 
 def test_close_db(app):
