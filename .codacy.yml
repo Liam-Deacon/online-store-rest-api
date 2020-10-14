@@ -20,10 +20,14 @@ engines:
     enabled: true
 ratings:
   paths:
-  - "**.py"
+    - "**.py"
+  exclude_paths:
+    - test/**
+    - '**/test/'
 exclude_paths:
 - test/
 - doc/
 - setup.py
 - doc/build/**
 - "**/test/"
+- test/*.py
