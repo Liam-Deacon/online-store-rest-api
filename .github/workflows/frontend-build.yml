@@ -17,6 +17,11 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: Python3.7
+
     # this is a simple install step - checks package.json is valid
     - name: Install npm dev tools ⚙️
       run: |
