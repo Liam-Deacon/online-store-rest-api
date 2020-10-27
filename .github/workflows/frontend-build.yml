@@ -11,16 +11,17 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest
-    container:
-        image: node
 
     steps:
     - uses: actions/checkout@v1
 
-    - name: Set up Python
+    - name: Setup Node.js environment ☕
+      uses: actions/setup-node@v2.1.2
+
+    - name: Set up Python 🐍
       uses: actions/setup-python@v1
       with:
-        python-version: Python3.7
+        python-version: 3.7
 
     # this is a simple install step - checks package.json is valid
     - name: Install npm dev tools ⚙️
