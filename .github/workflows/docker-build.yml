@@ -11,13 +11,14 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest
-    container:
-        image: node
 
     steps:
     - uses: actions/checkout@v1
 
-    - name: Set up Python
+    - name: Setup Node.js environment ☕
+      uses: actions/setup-node@v2.1.2
+
+    - name: Set up Python 🐍
       uses: actions/setup-python@v1
       with:
         python-version: 3.7
